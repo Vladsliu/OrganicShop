@@ -12,6 +12,7 @@ namespace OrganicShop2.Models.Data
         public string? Slug { get; set; }
         public string? Description { get; set; }
         public int? Sorting { get; set; }
+        [Display(Name = "Sidebar")]
         public bool? HasSidebar { get; set; }
         public string? Image { get; set; }
     }
