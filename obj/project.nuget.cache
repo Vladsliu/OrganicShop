@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "fs8JxSAd/GZuBeMcU9pTsjTtuBz9JkQQ3IuWrTmn6O62MbrRX96U/tFKmxzczB2UfZmBCvhEILEexGBcQ1aEzA==",
+  "dgSpecHash": "bFkp01m2JxkQTecKoyCNyExnTW5uMt0zhgthlb4hxdbxmn2oSlXTliF1tAc1MwhmdsnEoh/4pDUcjteAAZ8Zpw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\OrganicShop2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Чук\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Чук\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Чук\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Чук\\.nuget\\packages\\jquery\\1.12.4\\jquery.1.12.4.nupkg.sha512",
+    "C:\\Users\\Чук\\.nuget\\packages\\jquery.ui\\1.12.1.1\\jquery.ui.1.12.1.1.nupkg.sha512",
     "C:\\Users\\Чук\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Чук\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\Чук\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",

@@ -68,40 +68,34 @@ namespace OrganicShop2.Controllers
         [HttpGet]
         public IActionResult EditPage(int id)
         {
-            //Оголошую модель пейджвиюмодел
             PageVM model;
             PagesDTO dto = new PagesDTO();
            
-            //получаем страницу
             dto = _context.Pages.Find(id);
 
-            //провереем доступна ли страница
             if (dto == null)
             {
                 return Content("The page is not exist.");
             }
-            //инициалізуєм модель данних
+
             model = new PageVM(dto);
-            //повертаєм  модель у вью
             return View(model);
         }
 
         [HttpPost]
         public IActionResult EditPage(PageVM model)
         {
-            //проверяем модель на валидность
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            //оголосим переменную краткого заоловка
             int id = model.Id;
             string slug = "home";
-            //получаем страницу
+
             PagesDTO dto = _context.Pages.Find(id);
-            //присвоить название из полученной ДТО
+           
             dto.Title = model.Title;
-            //проверяем краткий заголовок и присваиваем его если не обходимо
+           
             if (model.Slug != "home")
             {
                 if (string.IsNullOrWhiteSpace(model.Slug))
@@ -113,7 +107,6 @@ namespace OrganicShop2.Controllers
                     slug = model.Slug.Replace(" ", "-").ToLower();
                 }
             }
-            //проверяем слаг и тайтл на уникальность
             if (_context.Pages.Where(x => x.Id != id).Any(x => x.Title == model.Title))//??
             {
                 ModelState.AddModelError("", "That title already exist");
@@ -124,13 +117,12 @@ namespace OrganicShop2.Controllers
                 ModelState.AddModelError("", "That slug already exist");
                 return View(model);
             }
-            //записиваем остальние значения в класДТО
             dto.Slug = slug;
             dto.Description = model.Description;
             dto.HasSidebar = model.HasSidebar;
-            //зберігаєм зміни в бд
+           
             _context.SaveChanges();
-            //виводимо повідомлення що все зроблено успішно(темпдата)
+            
             TempData["SM"] = "You have adited the page.";
 
             return RedirectToAction("EditPage");
@@ -151,5 +143,17 @@ namespace OrganicShop2.Controllers
             return View(model);
         }
         
+    
+        public IActionResult DeletePage(int id)
+        {
+            PagesDTO dto = _context.Pages.Find(id);
+
+            _context.Pages.Remove(dto);
+            _context.SaveChanges();
+
+            TempData["SM"] = "You have deleted a page!";
+
+            return RedirectToAction("Index");
+        }
     }
 }
