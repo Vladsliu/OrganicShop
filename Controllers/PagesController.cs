@@ -143,7 +143,6 @@ namespace OrganicShop2.Controllers
             return View(model);
         }
         
-    
         public IActionResult DeletePage(int id)
         {
             PagesDTO dto = _context.Pages.Find(id);
@@ -154,6 +153,59 @@ namespace OrganicShop2.Controllers
             TempData["SM"] = "You have deleted a page!";
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult EditSidebar()
+        {
+           
+            SidebarVM model;
+           
+            var dto = _context.Sidebars.Find(1);//not good use "1"
+            
+            model = new SidebarVM(dto);
+            
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public IActionResult EditSidebar(SidebarVM model)
+        {
+            
+            SidebarDTO dto = _context.Sidebars.Find(1);
+            
+            dto.Body = model.Body;
+            
+            _context.SaveChanges();
+           
+            TempData["SM"] = "You have updated a sidebar!";
+
+            return RedirectToAction("EditSidebar");
+        }
+
+        public IActionResult CreateSidebar()
+        
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateSidebar(SidebarVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            SidebarDTO dto = new SidebarDTO();
+           
+            dto.Body = model.Body;
+
+            _context.Sidebars.Add(dto);
+            _context.SaveChanges();
+
+            TempData["SM"] = "Added new sidebar page!";
+            return RedirectToAction("CreateSidebar");
+
         }
     }
 }
