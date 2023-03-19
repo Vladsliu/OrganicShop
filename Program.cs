@@ -1,10 +1,15 @@
 using CulinaryClub.Data;
 using Microsoft.EntityFrameworkCore;
+using OrganicShop2.Helpers;
+using OrganicShop2.Interfaces;
+using OrganicShop2.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IPhotoService, PhotoService>();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddDbContext<Db>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
