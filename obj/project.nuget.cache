@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hjWH1bfWIzWpetTi0PGOE4M9YFxySR8FUC3ygCkvUH/1mWa79Ya5vG5B+wFx48BYqaECvX3mJvXC8BpzJdUoqQ==",
+  "dgSpecHash": "wI+P4ItQRwWMnpT4jVTyn3lJzZGn8/h5qqTgVVA94CmVif0GmigVDiDENmDLguI2Ixp+qB0v9pQfsRzP0rIrgg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\OrganicShop2.csproj",
+  "projectFilePath": "C:\\Users\\Чук\\Documents\\GitHub\\OrganicShop\\OrganicShop2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Чук\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Чук\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

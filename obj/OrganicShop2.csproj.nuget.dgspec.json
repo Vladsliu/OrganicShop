@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\OrganicShop2.csproj": {}
+    "C:\\Users\\Чук\\Documents\\GitHub\\OrganicShop\\OrganicShop2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\OrganicShop2.csproj": {
+    "C:\\Users\\Чук\\Documents\\GitHub\\OrganicShop\\OrganicShop2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\OrganicShop2.csproj",
+        "projectUniqueName": "C:\\Users\\Чук\\Documents\\GitHub\\OrganicShop\\OrganicShop2.csproj",
         "projectName": "OrganicShop2",
-        "projectPath": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\OrganicShop2.csproj",
+        "projectPath": "C:\\Users\\Чук\\Documents\\GitHub\\OrganicShop\\OrganicShop2.csproj",
         "packagesPath": "C:\\Users\\Чук\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\obj\\",
+        "outputPath": "C:\\Users\\Чук\\Documents\\GitHub\\OrganicShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
