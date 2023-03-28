@@ -1,0 +1,53 @@
+﻿@model IEnumerable<OrganicShop2.Models.ViewModels.Shop.CategoryVM>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h1>Categories</h1>
+
+
+<div class="new-cat">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Category Name</span>
+        </div>
+        <input type="text" id="newcatname" class="form-control" />
+    </div>
+    <p>
+        <a href="#" id="newcat" class="btn btn-success">Add new category</a>
+        <span class="ajax-text">
+            <img src="/lib/ajax-loader.gif" height="50" alt="...">
+        </span>
+    </p>
+</div>
+
+@if (!Model.Any())
+{
+<h1 class="text-center">There are no categories</h1>    
+}
+else
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @Html.EditorFor(modelItem => item.Name, new { htmlAttributes = new {@class = "form-control", @readonly = "readonly"}})
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Id  }, new {@class = "delete btn btn-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}

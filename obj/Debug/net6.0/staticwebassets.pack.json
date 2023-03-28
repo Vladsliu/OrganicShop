@@ -17,6 +17,14 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
+      "Id": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\03.jpg",
+      "PackagePath": "staticwebassets\\lib\\03.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\ajax-loader.gif",
+      "PackagePath": "staticwebassets\\lib\\ajax-loader.gif"
+    },
+    {
       "Id": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },

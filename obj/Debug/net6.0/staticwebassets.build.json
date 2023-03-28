@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "omEfsngUOspaO3DLXqbtv+m0HisPtLqMhWNb4xIPMrs=",
+  "Hash": "Er59pTw+ju9/Iov3oICGATgoRSMSUd+HAQtdnv17RF8=",
   "Source": "OrganicShop2",
   "BasePath": "_content/OrganicShop2",
   "Mode": "Default",
@@ -100,6 +100,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\03.jpg",
+      "SourceId": "OrganicShop2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\",
+      "BasePath": "_content/OrganicShop2",
+      "RelativePath": "lib/03.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\03.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\ajax-loader.gif",
+      "SourceId": "OrganicShop2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\",
+      "BasePath": "_content/OrganicShop2",
+      "RelativePath": "lib/ajax-loader.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\ajax-loader.gif"
     },
     {
       "Identity": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

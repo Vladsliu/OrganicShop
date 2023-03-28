@@ -9,65 +9,69 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = OrganicShop2
 build_property.RootNamespace = OrganicShop2
-build_property.ProjectDir = C:\Users\Чук\Documents\GitHub\OrganicShop\
+build_property.ProjectDir = C:\Users\Чук\source\repos\OrganicShop2\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Чук\Documents\GitHub\OrganicShop
+build_property.MSBuildProjectDirectory = C:\Users\Чук\source\repos\OrganicShop2
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Dashboard/Index.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Home/Index.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Home/Privacy.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Pages/AddPage.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Pages/AddPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcQWRkUGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Pages/CreateSidebar.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Pages/CreateSidebar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcQ3JlYXRlU2lkZWJhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Pages/EditPage.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Pages/EditPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcRWRpdFBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Pages/EditSidebar.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Pages/EditSidebar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcRWRpdFNpZGViYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Pages/Index.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Pages/PageDetails.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Pages/PageDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcUGFnZURldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Shared/Error.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/_ViewImports.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Shop/Categories.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcFxDYXRlZ29yaWVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Чук/source/repos/OrganicShop2/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/_ViewStart.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Чук/Documents/GitHub/OrganicShop/Views/Shared/_Layout.cshtml]
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-nabtp9uxoo
