@@ -288,3 +288,14 @@ C:\Users\Чук\source\repos\OrganicShop2\bin\Debug\net6.0\runtimes\win-x86\nati
 C:\Users\Чук\source\repos\OrganicShop2\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Чук\source\repos\OrganicShop2\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\Чук\source\repos\OrganicShop2\bin\Debug\net6.0\CloudinaryDotNet.dll
+C:\Users\Чук\Documents\GitHub\OrganicShop\obj\Debug\net6.0\OrganicShop2.csproj.AssemblyReference.cache
+C:\Users\Чук\Documents\GitHub\OrganicShop\obj\Debug\net6.0\OrganicShop2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Чук\Documents\GitHub\OrganicShop\obj\Debug\net6.0\OrganicShop2.AssemblyInfoInputs.cache
+C:\Users\Чук\Documents\GitHub\OrganicShop\obj\Debug\net6.0\OrganicShop2.AssemblyInfo.cs
+C:\Users\Чук\Documents\GitHub\OrganicShop\obj\Debug\net6.0\OrganicShop2.csproj.CoreCompileInputs.cache
+C:\Users\Чук\Documents\GitHub\OrganicShop\obj\Debug\net6.0\OrganicShop2.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Чук\Documents\GitHub\OrganicShop\obj\Debug\net6.0\OrganicShop2.RazorAssemblyInfo.cache
+C:\Users\Чук\Documents\GitHub\OrganicShop\obj\Debug\net6.0\OrganicShop2.RazorAssemblyInfo.cs
+C:\Users\Чук\Documents\GitHub\OrganicShop\obj\Debug\net6.0\OrganicShop2.dll
+C:\Users\Чук\Documents\GitHub\OrganicShop\obj\Debug\net6.0\refint\OrganicShop2.dll
+C:\Users\Чук\Documents\GitHub\OrganicShop\obj\Debug\net6.0\OrganicShop2.pdb
