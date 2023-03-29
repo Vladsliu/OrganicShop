@@ -4,6 +4,13 @@
     ViewData["Title"] = "Create Categories";
 }
 
+@if (TempData["SM"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SM"]
+    </div>
+}
+
 <h1>Create Categories</h1>
 
 

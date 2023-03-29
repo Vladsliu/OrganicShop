@@ -17,8 +17,7 @@ namespace OrganicShop2.Controllers
             _context = context; 
         }
         public IActionResult Categories()
-        {
-       
+        { 
             List<CategoryVM> categoryVMList;
            
             categoryVMList = _context.Categories.ToArray().OrderBy(x =>x.Sorting).Select(x => new CategoryVM(x)).ToList();
@@ -27,11 +26,9 @@ namespace OrganicShop2.Controllers
         }
 
         public IActionResult AddNewCategory()
-
         {
             return View();
         }
-
 
         [HttpPost]
         public IActionResult AddNewCategory(CategoryVM model)
@@ -40,6 +37,12 @@ namespace OrganicShop2.Controllers
             {
                 return View(model);
             }
+            if (_context.Categories.Any(x => x.Name == model.Name))
+            {
+                TempData["SM"] = "This category already exist!";
+                return View("AddCategories");
+            }
+
             CategoryDTO dto = new CategoryDTO();
 
             dto.Name = model.Name;
@@ -51,7 +54,6 @@ namespace OrganicShop2.Controllers
 
             TempData["SM"] = "Added new category page!";
             return RedirectToAction("Categories");
-
         }
 
         public IActionResult AddCategories()
@@ -59,45 +61,16 @@ namespace OrganicShop2.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddCategories(CreatePagesDTOViewModel pagesDTOVM)
+        public IActionResult DeleteCategory(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(pagesDTOVM);
-            }
+            CategoryDTO dto = _context.Categories.Find(id);
 
-            PagesDTO dto = new PagesDTO();
-            dto.Title = pagesDTOVM.Title.ToUpper();
-            string slug;
-            if (string.IsNullOrWhiteSpace(pagesDTOVM.Slug))
-            {
-                slug = pagesDTOVM.Title.Replace(" ", "-").ToLower();
-            }
-            else
-            {
-                slug = pagesDTOVM.Slug.Replace(" ", "-").ToLower();
-            }
-            if (_context.Pages.Any(x => x.Title == pagesDTOVM.Title))
-            {
-                ModelState.AddModelError("", "That title already exist.");
-                return View(pagesDTOVM);
-            }
-            else if (_context.Pages.Any(x => x.Slug == pagesDTOVM.Slug))
-            {
-                ModelState.AddModelError("", "That slug already exist.");
-            }
-            dto.Slug = slug;
-            dto.Description = pagesDTOVM.Description;
-            dto.HasSidebar = pagesDTOVM.HasSidebar;
-            dto.Sorting = 100;
-            _context.Pages.Add(dto);
+            _context.Categories.Remove(dto);
             _context.SaveChanges();
 
-            TempData["SM"] = "Added new cat!";
+            TempData["SM"] = "You have deleted a category!";
+
             return RedirectToAction("Categories");
         }
-
-
     }
 }

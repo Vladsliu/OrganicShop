@@ -5,10 +5,15 @@
     ViewData["Title"] = "Categories";
 }
 
+@if (TempData["SM"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SM"]
+    </div>
+}
+
 <p>
-
-    <a asp-action="AddCategories" class="btn btn-success">AddCategories</a>
-
+    <a asp-action="AddCategories" class="btn btn-success">Add Categories</a>
 </p>
 
     @if (!Model.Any())
@@ -33,7 +38,7 @@ else
                     @Html.EditorFor(modelItem => item.Name, new { htmlAttributes = new {@class = "form-control", @readonly = "readonly"}})
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new {  id=item.Id  }, new {@class = "delete btn btn-danger" })
+                        @Html.ActionLink("Delete", "DeleteCategory", new {  id=item.Id  }, new {@class = "delete btn btn-danger" })
             </td>
         </tr>
 }
