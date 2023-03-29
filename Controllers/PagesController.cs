@@ -38,7 +38,7 @@ namespace OrganicShop2.Controllers
                 return View(pagesDTOVM);
             }
 
-            var result = await _photoService.AddPhotoAsync(pagesDTOVM.Image);//
+            var result = await _photoService.AddPhotoAsync(pagesDTOVM.Image);
 
             PagesDTO dto = new PagesDTO();
             dto.Title = pagesDTOVM.Title.ToUpper();

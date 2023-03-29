@@ -1,28 +1,17 @@
 ﻿@model IEnumerable<OrganicShop2.Models.ViewModels.Shop.CategoryVM>
 
+
 @{
     ViewData["Title"] = "Categories";
 }
 
-<h1>Categories</h1>
+<p>
 
+    <a asp-action="AddCategories" class="btn btn-success">AddCategories</a>
 
-<div class="new-cat">
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">Category Name</span>
-        </div>
-        <input type="text" id="newcatname" class="form-control" />
-    </div>
-    <p>
-        <a href="#" id="newcat" class="btn btn-success">Add new category</a>
-        <span class="ajax-text">
-            <img src="/lib/ajax-loader.gif" height="50" alt="...">
-        </span>
-    </p>
-</div>
+</p>
 
-@if (!Model.Any())
+    @if (!Model.Any())
 {
 <h1 class="text-center">There are no categories</h1>    
 }
@@ -39,7 +28,7 @@ else
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr id="id_@item.Id">
             <td>
                     @Html.EditorFor(modelItem => item.Name, new { htmlAttributes = new {@class = "form-control", @readonly = "readonly"}})
             </td>
