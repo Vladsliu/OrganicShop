@@ -72,5 +72,43 @@ namespace OrganicShop2.Controllers
 
             return RedirectToAction("Categories");
         }
+
+        public IActionResult UpdateCategory()
+        {
+            CategoryVM model;
+
+            var dto = _context.Categories.Find(2);//not good use "2"
+
+            model = new CategoryVM(dto);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCategory(CategoryVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            if (_context.Categories.Any(x => x.Name == model.Name))
+            {
+                TempData["SM"] = "This category already exist!";
+                return View(model);
+            }
+
+            CategoryDTO dto = _context.Categories.Find(2);////not good, fix me
+           
+            dto.Name = model.Name;
+            dto.Slug = model.Name.Replace(" ", "-").ToLower();
+            dto.Sorting = 100;
+
+            _context.Categories.Update(dto);
+            _context.SaveChanges();
+
+            TempData["SM"] = "Category updated!";
+
+            return RedirectToAction("Categories");
+        }
     }
 }
