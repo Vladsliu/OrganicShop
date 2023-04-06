@@ -1,5 +1,6 @@
 ﻿using CulinaryClub.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OrganicShop2.Interfaces;
 using OrganicShop2.Models.Data;
 using OrganicShop2.Models.ViewModels;
@@ -109,6 +110,15 @@ namespace OrganicShop2.Controllers
             TempData["SM"] = "Category updated!";
 
             return RedirectToAction("Categories");
+        }
+
+        public IActionResult AddProduct()
+        { 
+            ProductVM model = new ProductVM();
+
+            model.Categories = new SelectList(_context.Categories.ToList(), dataValueField: "id", dataTextField: "Name");
+
+            return View(model);
         }
     }
 }
