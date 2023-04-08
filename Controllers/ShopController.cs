@@ -122,5 +122,45 @@ namespace OrganicShop2.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public IActionResult AddProduct(ProductVM model)
+        { 
+            if (!ModelState.IsValid)
+            {
+                model.Categories = new SelectList(_context.Categories.ToList(), dataValueField: "Id", dataTextField: "Name");
+                return View(model);
+            }
+            if (_context.Products.Any(x => x.Name == model.Name))
+            {
+                model.Categories = new SelectList(_context.Categories.ToList(), dataValueField: "Id", dataTextField: "Name");
+                ModelState.AddModelError("", "That products name is taken!");
+                return View(model);
+            }
+            int id;
+
+            ProductDTO product = new ProductDTO();
+            product.Name = model.Name;
+            product.Slug = model.Name.Replace(" ", "-").ToLower();
+            product.Description = model.Description;
+            product.Price = model.Price;
+            product.CategoryId = model.CategoryId;
+
+            CategoryDTO catDTO = _context.Categories.FirstOrDefault(x => x.Id == model.CategoryId);
+            product.CategoryName = catDTO.Name;
+
+            _context.Products.Add(product);
+            _context.SaveChanges();
+
+            id = product.Id;
+
+            TempData["SM"] = "You have added a product!";
+
+
+
+
+
+        return RedirectToAction ("AddProduct");
+        }
     }
 }
