@@ -31,8 +31,8 @@ namespace OrganicShop2.Models.ViewModels.Shop
         public string Description { get; set; }
         public decimal Price { get; set; }
         [Required]
-        [DisplayName("Category")]
         public string CategoryName { get; set; }
+        [DisplayName("Category")]
         public int CategoryId { get; set; }
         public string? Image { get; set; }
 

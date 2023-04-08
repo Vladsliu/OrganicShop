@@ -113,10 +113,12 @@ namespace OrganicShop2.Controllers
         }
 
         public IActionResult AddProduct()
+        
         { 
-            ProductVM model = new ProductVM();
 
-            model.Categories = new SelectList(_context.Categories.ToList(), dataValueField: "id", dataTextField: "Name");
+            ProductVM model = new ProductVM();
+            
+            model.Categories = new SelectList(_context.Categories.ToList(), dataValueField: "Id", dataTextField: "Name");
 
             return View(model);
         }
