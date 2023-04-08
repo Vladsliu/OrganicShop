@@ -1,6 +1,7 @@
 ﻿using CulinaryClub.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using OrganicShop2.Interfaces;
 using OrganicShop2.Models.Data;
 using OrganicShop2.Models.ViewModels;
@@ -13,9 +14,11 @@ namespace OrganicShop2.Controllers
     public class ShopController : Controller
     {
         private readonly Db _context;
-        public ShopController(Db context)
+        private readonly IPhotoService _photoService;
+        public ShopController(Db context, IPhotoService photoService)
         {
-            _context = context; 
+            _context = context;
+            _photoService = photoService;
         }
         public IActionResult Categories()
         { 
@@ -124,20 +127,19 @@ namespace OrganicShop2.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProduct(ProductVM model)
-        { 
+        public async Task<IActionResult> AddProduct(CreateProductDTOViewModel model)
+        {
             if (!ModelState.IsValid)
             {
-                model.Categories = new SelectList(_context.Categories.ToList(), dataValueField: "Id", dataTextField: "Name");
-                return View(model);
+                return RedirectToAction("AddProduct");
             }
+
             if (_context.Products.Any(x => x.Name == model.Name))
             {
-                model.Categories = new SelectList(_context.Categories.ToList(), dataValueField: "Id", dataTextField: "Name");
                 ModelState.AddModelError("", "That products name is taken!");
                 return View(model);
             }
-            int id;
+            var result = await _photoService.AddPhotoAsync(model.Image);
 
             ProductDTO product = new ProductDTO();
             product.Name = model.Name;
@@ -145,6 +147,7 @@ namespace OrganicShop2.Controllers
             product.Description = model.Description;
             product.Price = model.Price;
             product.CategoryId = model.CategoryId;
+            product.Image = result.Url.ToString();
 
             CategoryDTO catDTO = _context.Categories.FirstOrDefault(x => x.Id == model.CategoryId);
             product.CategoryName = catDTO.Name;
@@ -152,12 +155,7 @@ namespace OrganicShop2.Controllers
             _context.Products.Add(product);
             _context.SaveChanges();
 
-            id = product.Id;
-
             TempData["SM"] = "You have added a product!";
-
-
-
 
 
         return RedirectToAction ("AddProduct");

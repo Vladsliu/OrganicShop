@@ -35,6 +35,7 @@ namespace OrganicShop2.Models.ViewModels.Shop
         [DisplayName("Category")]
         public int CategoryId { get; set; }
         public string? Image { get; set; }
+       
 
         public IEnumerable<SelectListItem> Categories { get; set; }
         public IEnumerable<string> GalleryImages { get; set; }
