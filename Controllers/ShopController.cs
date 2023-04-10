@@ -77,11 +77,11 @@ namespace OrganicShop2.Controllers
             return RedirectToAction("Categories");
         }
 
-        public IActionResult UpdateCategory()
+        public IActionResult UpdateCategory(int id)
         {
             CategoryVM model;
 
-            var dto = _context.Categories.Find(2);//not good use "2"
+            var dto = _context.Categories.Find(id);
 
             model = new CategoryVM(dto);
 
@@ -101,7 +101,7 @@ namespace OrganicShop2.Controllers
                 return View(model);
             }
 
-            CategoryDTO dto = _context.Categories.Find(2);////not good, fix me
+            CategoryDTO dto = _context.Categories.Find(model.Id);
            
             dto.Name = model.Name;
             dto.Slug = model.Name.Replace(" ", "-").ToLower();
@@ -116,7 +116,6 @@ namespace OrganicShop2.Controllers
         }
 
         public IActionResult AddProduct()
-        
         { 
 
             ProductVM model = new ProductVM();
