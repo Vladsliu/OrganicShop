@@ -131,13 +131,14 @@ namespace OrganicShop2.Controllers
         {
             if (!ModelState.IsValid)
             {
+                TempData["SM"] = "Error. Please, try again!";
                 return RedirectToAction("AddProduct");
             }
 
             if (_context.Products.Any(x => x.Name == model.Name))
             {
-                ModelState.AddModelError("", "That products name is taken!");
-                return View(model);
+                TempData["SM"] = "Error, name already exist!";
+                return RedirectToAction("AddProduct");
             }
             var result = await _photoService.AddPhotoAsync(model.Image);
 
@@ -156,7 +157,6 @@ namespace OrganicShop2.Controllers
             _context.SaveChanges();
 
             TempData["SM"] = "You have added a product!";
-
 
         return RedirectToAction ("AddProduct");
         }
