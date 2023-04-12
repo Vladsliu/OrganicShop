@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Hs9ATjNc6Mgx/BtszNMJSNG6phg0yVWgSZkaVkaTVCw=",
+  "Hash": "/Y3NAfS7lO673505KOo9OoPH5GdQp2eB/BDt4xLOhKQ=",
   "Source": "OrganicShop2",
   "BasePath": "_content/OrganicShop2",
   "Mode": "Default",
@@ -916,6 +916,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\Content\\PagedList.css"
+    },
+    {
+      "Identity": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\Content\\ShopJS\\ProductsScript.js",
+      "SourceId": "OrganicShop2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\",
+      "BasePath": "_content/OrganicShop2",
+      "RelativePath": "lib/Content/ShopJS/ProductsScript.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\Content\\ShopJS\\ProductsScript.js"
     },
     {
       "Identity": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\jquery\\dist\\jquery.js",

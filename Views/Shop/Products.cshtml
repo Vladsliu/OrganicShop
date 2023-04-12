@@ -86,3 +86,8 @@
 </table>
 
 @Html.PagedListPager((IPagedList)ViewBag.onePageOfProducts, page => Url.Action("Products", new{page, catId = ViewBag.SelectedCat}))
+
+@section Scripts
+{
+    <script src="~/lib/content/shopjs/productsscript.js"></script>
+}
