@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Er59pTw+ju9/Iov3oICGATgoRSMSUd+HAQtdnv17RF8=",
+  "Hash": "Hs9ATjNc6Mgx/BtszNMJSNG6phg0yVWgSZkaVkaTVCw=",
   "Source": "OrganicShop2",
   "BasePath": "_content/OrganicShop2",
   "Mode": "Default",
@@ -901,6 +901,23 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
+      "Identity": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\Content\\PagedList.css",
+      "SourceId": "OrganicShop2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\",
+      "BasePath": "_content/OrganicShop2",
+      "RelativePath": "lib/Content/PagedList.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\Content\\PagedList.css"
+    },
+    {
       "Identity": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "OrganicShop2",
       "SourceType": "Discovered",
@@ -1103,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\no_img.jpg",
+      "SourceId": "OrganicShop2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\",
+      "BasePath": "_content/OrganicShop2",
+      "RelativePath": "lib/no_img.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\no_img.jpg"
     }
   ]
 }

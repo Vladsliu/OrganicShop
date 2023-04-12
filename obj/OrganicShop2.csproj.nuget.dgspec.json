@@ -70,6 +70,10 @@
               "target": "Package",
               "version": "[6.0.13, )"
             },
+            "X.PagedList.Mvc.Core": {
+              "target": "Package",
+              "version": "[8.4.7, )"
+            },
             "jQuery.UI": {
               "target": "Package",
               "version": "[1.12.1.1, )"

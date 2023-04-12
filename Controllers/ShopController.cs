@@ -8,6 +8,8 @@ using OrganicShop2.Models.ViewModels;
 using OrganicShop2.Models.ViewModels.Pages;
 using OrganicShop2.Models.ViewModels.Shop;
 using OrganicShop2.Services;
+//using PagedList;
+using X.PagedList;
 
 namespace OrganicShop2.Controllers
 {
@@ -158,6 +160,26 @@ namespace OrganicShop2.Controllers
             TempData["SM"] = "You have added a product!";
 
         return RedirectToAction ("AddProduct");
+        }
+
+        public IActionResult Products(int? page, int? catId)
+        {
+            List<ProductVM> listOfProductVM;
+
+            var pageNumber = page ?? 1;
+
+            listOfProductVM = _context.Products.ToArray()
+                              .Where(x => catId == null || catId == 0 || x.CategoryId == catId)
+                              .Select(x => new ProductVM(x))
+                              .ToList();
+
+            ViewBag.Categories = new SelectList(_context.Categories.ToList(), "Id", "Name");
+            ViewBag.SelectedCat = catId.ToString();
+
+            var onePageOfProducts = listOfProductVM.ToPagedList(pageNumber, 3);
+            ViewBag.onePageOfProducts = onePageOfProducts;
+
+            return View(listOfProductVM);
         }
     }
 }

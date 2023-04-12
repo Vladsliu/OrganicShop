@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\lib\\03.jpg"
     },
     {
+      "Id": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\Content\\PagedList.css",
+      "PackagePath": "staticwebassets\\lib\\Content\\PagedList.css"
+    },
+    {
       "Id": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\ajax-loader.gif",
       "PackagePath": "staticwebassets\\lib\\ajax-loader.gif"
     },
@@ -251,6 +255,10 @@
     {
       "Id": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\no_img.jpg",
+      "PackagePath": "staticwebassets\\lib\\no_img.jpg"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.OrganicShop2.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -183,8 +183,8 @@ namespace OrganicShop2.Controllers
         public IActionResult EditSidebar(SidebarVM model)
         {
             
-            SidebarDTO dto = _context.Sidebars.Find(1);
-            
+            SidebarDTO dto = _context.Sidebars.Find(1);////not good use "1"
+
             dto.Body = model.Body;
             
             _context.SaveChanges();
