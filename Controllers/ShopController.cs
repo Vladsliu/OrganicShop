@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using OrganicShop2.Interfaces;
 using OrganicShop2.Models.Data;
 using OrganicShop2.Models.ViewModels;
 using OrganicShop2.Models.ViewModels.Pages;
 using OrganicShop2.Models.ViewModels.Shop;
 using OrganicShop2.Services;
-//using PagedList;
 using X.PagedList;
 
 namespace OrganicShop2.Controllers
@@ -180,6 +180,24 @@ namespace OrganicShop2.Controllers
             ViewBag.onePageOfProducts = onePageOfProducts;
 
             return View(listOfProductVM);
+        }
+
+        public IActionResult EditProduct(int id)
+        { 
+            ProductVM model = new ProductVM();
+
+            ProductDTO dto = _context.Products.Find(id);
+
+            if (dto == null)
+            {
+                return Content("That product does not exist");
+            }
+
+            model = new ProductVM(dto);
+
+            model.Categories = new SelectList(_context.Categories.ToList(), "Id", "Name");
+            
+        return View(model);
         }
     }
 }
