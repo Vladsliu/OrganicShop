@@ -122,7 +122,7 @@ namespace OrganicShop2.Controllers
 
             ProductVM model = new ProductVM();
             
-            model.Categories = new SelectList(_context.Categories.ToList(), dataValueField: "Id", dataTextField: "Name");
+            model.Categories = new SelectList(_context.Categories.ToList(), "Id", "Name");
 
             return View(model);
         }
@@ -183,8 +183,8 @@ namespace OrganicShop2.Controllers
         }
 
         public IActionResult EditProduct(int id)
-        { 
-            ProductVM model = new ProductVM();
+        {
+            CreateProductDTOViewModel model = new CreateProductDTOViewModel();
 
             ProductDTO dto = _context.Products.Find(id);
 
@@ -193,11 +193,52 @@ namespace OrganicShop2.Controllers
                 return Content("That product does not exist");
             }
 
-            model = new ProductVM(dto);
+            model = new CreateProductDTOViewModel(dto);
 
             model.Categories = new SelectList(_context.Categories.ToList(), "Id", "Name");
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProduct(CreateProductDTOViewModel model)
+        {
+            int id = model.Id;
+
+            if (!ModelState.IsValid)
+            {
+                TempData["SM"] = "Error somethyngs, try again";
+                model.Categories = new SelectList(_context.Categories.ToList(), "Id", "Name", model.CategoryId);
+                return View(model);
+            }
+            if (_context.Products.Where(x => x.Id != id).Any(x => x.Name == model.Name))
+            {
+                TempData["SM"] = "Error Name, try again";
+                model.Categories = new SelectList(_context.Categories.ToList(), "Id", "Name", model.CategoryId);
+                return View(model);
+            }
+
+            ProductDTO dto;
+            dto = _context.Products.Find(id);
+
+            dto.Name = model.Name;
+            dto.Slug = model.Name.Replace(" ", "-").ToLower();
+            dto.Description = model.Description;
+            dto.Price = model.Price;
+            dto.CategoryId = model.CategoryId;
+
+            CategoryDTO catDTO = _context.Categories.FirstOrDefault(x => x.Id == model.CategoryId);
+            dto.CategoryName = catDTO.Name;
+
+            var result = await _photoService.AddPhotoAsync(model.Image);
+            dto.Image = result.Url.ToString();
             
-        return View(model);
+            _context.Products.Update(dto);
+            _context.SaveChanges();
+            TempData["SM"] = "Product updated";
+
+
+            return RedirectToAction("Products");
         }
     }
 }
