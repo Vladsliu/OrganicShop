@@ -1,5 +1,6 @@
 ﻿using CulinaryClub.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OrganicShop2.Interfaces;
 using OrganicShop2.Models.Data;
 using OrganicShop2.Models.ViewModels;
@@ -97,18 +98,37 @@ namespace OrganicShop2.Controllers
                 return View(pagesDTOVM);
             }
 
-            var result = await _photoService.AddPhotoAsync(pagesDTOVM.Image);
 
             int id = pagesDTOVM.Id;
             string slug = "home";
 
             PagesDTO dto = _context.Pages.Find(id);
-           
+
+
+
+
+
+            var result = await _photoService.AddPhotoAsync(pagesDTOVM.Image);
+
+            if (dto.Image != null && dto.Image.Length > 0)
+            {
+                await _photoService.DeletePhotoAsync(dto.Image);
+            }
+            else
+            {
+                TempData["SM"] = "Error somethyngs, try again";
+                return View(pagesDTOVM);
+
+            }
+
+
+
+
             dto.Title = pagesDTOVM.Title;
            
             if (pagesDTOVM.Slug != "home")
             {
-                if (string.IsNullOrWhiteSpace(pagesDTOVM.Slug))
+                if (string.IsNullOrWhiteSpace(pagesDTOVM.Slug))  
                 {
                     slug = pagesDTOVM.Title.Replace(" ", "-").ToLower();
                 }
@@ -171,7 +191,7 @@ namespace OrganicShop2.Controllers
            
             SidebarVM model;
            
-            var dto = _context.Sidebars.Find(1);//not good use "1"
+            var dto = _context.Sidebars.Find(1);//not good use "1", must have View for updated
             
             model = new SidebarVM(dto);
             

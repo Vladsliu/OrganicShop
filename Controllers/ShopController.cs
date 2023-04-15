@@ -222,13 +222,26 @@ namespace OrganicShop2.Controllers
             dto = _context.Products.Find(id);
 
             dto.Name = model.Name;
-            dto.Slug = model.Name.Replace(" ", "-").ToLower();
+            dto.Slug = model.Name.Replace(" ", "-").ToLower(); 
             dto.Description = model.Description;
             dto.Price = model.Price;
             dto.CategoryId = model.CategoryId;
 
             CategoryDTO catDTO = _context.Categories.FirstOrDefault(x => x.Id == model.CategoryId);
             dto.CategoryName = catDTO.Name;
+
+
+            if (dto.Image != null && dto.Image.Length > 0)
+            {
+                await _photoService.DeletePhotoAsync(dto.Image);
+            }
+            else
+            {
+                TempData["SM"] = "Error somethyngs, try again";
+                model.Categories = new SelectList(_context.Categories.ToList(), "Id", "Name", model.CategoryId);
+                return View(model);
+            
+            }
 
             var result = await _photoService.AddPhotoAsync(model.Image);
             dto.Image = result.Url.ToString();
