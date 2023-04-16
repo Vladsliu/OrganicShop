@@ -40,10 +40,16 @@ else
             </td>
             <td>
                         @Html.ActionLink("Delete", "DeleteCategory", new {  id=item.Id  }, new {@class = "delete btn btn-danger" })
-                        @Html.ActionLink("Update", "UpdateCategory", new {  id=item.Id  }, new {@class = "delete btn btn-primary" })
+                        @Html.ActionLink("Update", "UpdateCategory", new {  id=item.Id  }, new {@class = "btn btn-primary" })
             </td>
         </tr>
 }
     </tbody>
 </table>
+}
+
+
+@section Scripts
+    {
+    <script src="~/lib/content/shopjs/productsscript.js"></script>
 }

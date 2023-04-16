@@ -253,5 +253,25 @@ namespace OrganicShop2.Controllers
 
             return RedirectToAction("Products");
         }
+
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            ProductDTO dto = _context.Products.Find(id);
+            _context.Products.Remove(dto);
+
+            if (dto.Image != null && dto.Image.Length > 0)
+            {
+                await _photoService.DeletePhotoAsync(dto.Image);
+                TempData["SM"] = "One product deleted";
+            }
+            else
+            {
+                TempData["SM"] = "Error somethyngs, try again";
+                return RedirectToAction("products");
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("products");
+        }
     }
 }

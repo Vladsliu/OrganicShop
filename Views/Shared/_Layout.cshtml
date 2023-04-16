@@ -24,10 +24,16 @@
           @Html.ActionLink("Pages", "Index", "Pages", "", new {@class = "nav-link"})
         </li>
         <li class="nav-item">
-         @Html.ActionLink("Sidebar", "EditSidebar", "Pages", "", new {@class = "nav-link"})
+         @Html.ActionLink("Sidebar", "Sidebar", "Pages", "", new {@class = "nav-link"})
+        </li>
+       @* <li class="nav-item">
+         @Html.ActionLink("CreateSidebar", "CreateSidebar", "Pages", "", new {@class = "nav-link"})
+        </li>*@
+        <li class="nav-item">
+        @Html.ActionLink("Categories", "Categories", "Shop", "", new {@class = "nav-link"})
         </li>
         <li class="nav-item">
-         @Html.ActionLink("CreateSidebar", "CreateSidebar", "Pages", "", new {@class = "nav-link"})
+        @Html.ActionLink("Products", "Products", "Shop", "", new {@class = "nav-link"})
         </li>
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>

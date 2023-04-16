@@ -5,6 +5,7 @@ using OrganicShop2.Interfaces;
 using OrganicShop2.Models.Data;
 using OrganicShop2.Models.ViewModels;
 using OrganicShop2.Models.ViewModels.Pages;
+using OrganicShop2.Models.ViewModels.Shop;
 
 namespace OrganicShop2.Controllers
 {
@@ -105,9 +106,6 @@ namespace OrganicShop2.Controllers
             PagesDTO dto = _context.Pages.Find(id);
 
 
-
-
-
             var result = await _photoService.AddPhotoAsync(pagesDTOVM.Image);
 
             if (dto.Image != null && dto.Image.Length > 0)
@@ -120,9 +118,6 @@ namespace OrganicShop2.Controllers
                 return View(pagesDTOVM);
 
             }
-
-
-
 
             dto.Title = pagesDTOVM.Title;
            
@@ -186,12 +181,19 @@ namespace OrganicShop2.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult EditSidebar()
+        public IActionResult Sidebar()
+        {
+            List<SidebarVM> sidebarVMList;
+
+            sidebarVMList = _context.Sidebars.ToArray().Select(x => new SidebarVM(x)).ToList();
+            return View(sidebarVMList);
+        }
+        public IActionResult EditSidebar(int id)
         {
            
             SidebarVM model;
            
-            var dto = _context.Sidebars.Find(1);//not good use "1", must have View for updated
+            var dto = _context.Sidebars.Find(id);
             
             model = new SidebarVM(dto);
             
@@ -203,7 +205,7 @@ namespace OrganicShop2.Controllers
         public IActionResult EditSidebar(SidebarVM model)
         {
             
-            SidebarDTO dto = _context.Sidebars.Find(1);////not good use "1"
+            SidebarDTO dto = _context.Sidebars.Find(model.Id);
 
             dto.Body = model.Body;
             
@@ -211,7 +213,7 @@ namespace OrganicShop2.Controllers
            
             TempData["SM"] = "You have updated a sidebar!";
 
-            return RedirectToAction("EditSidebar");
+            return RedirectToAction("Sidebar");
         }
 
         public IActionResult CreateSidebar()
@@ -235,8 +237,23 @@ namespace OrganicShop2.Controllers
             _context.SaveChanges();
 
             TempData["SM"] = "Added new sidebar page!";
-            return RedirectToAction("CreateSidebar");
+            return RedirectToAction("Sidebar");
 
         }
+
+        public IActionResult DeleteSidebar(int id) 
+        {
+            SidebarDTO dto = new SidebarDTO();
+
+            dto = _context.Sidebars.Find(id);
+
+            _context.Remove(dto);
+            _context.SaveChanges();
+
+            TempData["SM"] = "One element of sidebar deleted";
+
+            return RedirectToAction("Sidebar");
+        }
+
     }
 }
