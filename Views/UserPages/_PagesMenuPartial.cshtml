@@ -1,0 +1,51 @@
+﻿
+@*
+@model IEnumerable<OrganicShop2.Models.ViewModels.Pages.PageVM>
+<div class="card">*@
+	@*46 хвилин додати роути шоб переход був*@
+@*@foreach (var item in Model)
+{
+<li class="nav-item"> <a class="nav-link" href="/@item.Slug">@item.Title</a></li>}
+
+</div>*@
+
+
+
+
+@model IEnumerable<OrganicShop2.Models.ViewModels.Pages.PageVM>
+<div class="card">
+	@*46 хвилин додати роути шоб переход був*@
+	<ul class="nav-list">
+		@foreach (var item in Model)
+		{
+			<li class="nav-item"> <a class="nav-link" href="/@item.Slug">@item.Title</a></li>
+		}
+	</ul>
+</div>
+
+<style>
+	.nav-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex; /* Используем Flexbox для выравнивания элементов */
+	}
+
+	.nav-item {
+		margin-right: 10px;
+	}
+
+	.nav-link {
+		display: block;
+		padding: 10px;
+		color: #333;
+		text-decoration: none;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		transition: background-color 0.2s ease;
+	}
+
+		.nav-link:hover {
+			background-color: #f1f1f1;
+		}
+</style>

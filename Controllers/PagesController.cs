@@ -1,6 +1,6 @@
-﻿using CulinaryClub.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using OrganicShop2.Data;
 using OrganicShop2.Interfaces;
 using OrganicShop2.Models.Data;
 using OrganicShop2.Models.ViewModels;
@@ -254,6 +254,6 @@ namespace OrganicShop2.Controllers
 
             return RedirectToAction("Sidebar");
         }
-
+ 
     }
 }
