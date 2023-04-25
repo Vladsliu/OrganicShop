@@ -20,7 +20,7 @@ namespace OrganicShop2.Controllers
 
         {
             if (page == "")
-                page = "003";
+                page = "apple-short";
 
             PageVM model;
             PagesDTO dto;
@@ -47,26 +47,24 @@ namespace OrganicShop2.Controllers
             model = new PageVM(dto);
 
 
-            //kostil
+            ///
+            SidebarVM modelSidebar;
 
-            List<PageVM> pageVMList = _context.Pages.ToArray().OrderBy(x => x.Sorting).Where(x => x.Slug != "002")
+            SidebarDTO dtoSidebar = _context.Sidebars.Find(1002);
+
+
+            modelSidebar = new SidebarVM (dtoSidebar);
+
+
+            ViewBag.SidebarModel = modelSidebar;
+
+            ///
+            List<PageVM> pageVMList;
+
+            pageVMList = _context.Pages.ToArray().OrderBy(x => x.Sorting).Where(x => x.Slug != "002")
                          .Select(x => new PageVM(x)).ToList();
-
-            ViewBag.PageVMList = pageVMList;
-
-            ///kostil2
-
-            SidebarVM modelSB;
-
-            SidebarDTO dtoSB = _context.Sidebars.Find(1002);
-
-            modelSB = new SidebarVM(dtoSB);
-
-            ViewBag.SidebarModel = modelSB;
-
-
-
-            //
+            ViewBag.ModelPagesMenuPartial = pageVMList;
+            ///
 
 
             return View(model);
@@ -83,19 +81,17 @@ namespace OrganicShop2.Controllers
 
         }
 
-
         public IActionResult SidebarPartial()
         {
             SidebarVM model;
 
             SidebarDTO dto = _context.Sidebars.Find(1002);
 
-            model = new SidebarVM(dto);
-
-            return PartialView(model);
-        
-
            
+            model = new SidebarVM { Id = dto.id, Body = dto.Body };
+
+
+            return PartialView("_SidebarPartial", model);
         }
     }
 }

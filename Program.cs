@@ -34,44 +34,14 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    //endpoints.MapControllerRoute(
-    //    name: "default",
-    //    pattern: "UserPages/SidebarPartial",
-    //    defaults: new { controller = "UserPages", action = "Index" });
-
-    //endpoints.MapControllerRoute(
-    //   name: "PagesMenuPartial",
-    //   pattern: "UserPages/PagesMenuPartial",
-    //   defaults: new { controller = "UserPages", action = "PagesMenuPartial" });
-
-    //endpoints.MapControllerRoute(
-    //   name: "pages",
-    //   pattern: "{controller=UserPages}/{action=Index}/{id?}");
-
-
-
+ 
 
     endpoints.MapControllerRoute(
-      name: "default",
-      pattern: "{controller=UserPages}/{action=Index}/{id?}");
+     name: "default",
+     pattern: "{controller=UserPages}/{action=Index}/{id?}");
 
-
-    //endpoints.MapControllerRoute(
-    //        name: "custom",
-    //        pattern: "{controller=UserPages}/{action=Index2}/{id?}");
-
-
-    //endpoints.MapControllerRoute(
-    //  name: "default",
-    //  pattern: "{controller=UserPages}/{action=_SidebarPartial}/{id?}");
+   
 
 });
-
-//чат сказал это удалить
-//app.MapControllerRoute(
-//    //name: "default", pattern: "{controller=Pages}/{action=Index}/{id?}");
-//name: "default", pattern: "{controller=UserPages}/{action=SidebarPartial}/{id?}");
-
-
 
 app.Run();
