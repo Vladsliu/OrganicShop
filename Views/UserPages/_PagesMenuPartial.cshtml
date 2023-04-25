@@ -1,0 +1,16 @@
+﻿
+
+@model IEnumerable<OrganicShop2.Models.ViewModels.Pages.PageVM>
+
+@{
+	ViewData["Title"] = "Index";
+}
+<div class="card">
+	
+@foreach (var item in Model)
+{
+<li class="nav-item"> <a class="nav-link" href="/@item.Slug">@item.Title</a></li>}
+
+</div>
+
+

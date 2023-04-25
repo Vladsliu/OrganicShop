@@ -1,12 +1,11 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OrganicShop2.Models.Data;
 
-namespace CulinaryClub.Data
+namespace OrganicShop2.Data
 {
-	public class Db : DbContext
-	{
-       
+    public class Db : DbContext
+    {
+
 
         public Db(DbContextOptions<Db> options) : base(options)
         {

@@ -1,5 +1,5 @@
-using CulinaryClub.Data;
 using Microsoft.EntityFrameworkCore;
+using OrganicShop2.Data;
 using OrganicShop2.Helpers;
 using OrganicShop2.Interfaces;
 using OrganicShop2.Services;
@@ -32,8 +32,16 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-pattern: "{controller=Pages}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+ 
+
+    endpoints.MapControllerRoute(
+     name: "default",
+     pattern: "{controller=UserPages}/{action=Index}/{id?}");
+
+   
+
+});
 
 app.Run();
