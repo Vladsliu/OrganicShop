@@ -17,31 +17,13 @@
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-               @* @Html.ActionLink("Dashboard", "Index", "Dashboard","", new{@class = "nawbar-brand"})
+                @Html.ActionLink("OrganicShop", "Index", "UserPages","", new{@class = "nawbar-brand"})
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" 
     aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>*@
+    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-
-
-
-         @* ///*@
-
-                       @* <div class="card">
-
-                            @foreach (var item in ViewBag.ModelPagesMenuPartial)
-                            {
-                           <a class="list-group-item list-group-item-action" href="/shop/category/@item.Slug.ToLower()">@item.Title</a>
-                            }
-
-                       </div>
-                       *@
-
-                @*///*@
-
-
         <li class="nav-item">
           @Html.ActionLink("Pages", "Index", "Pages", "", new {@class = "nav-link"})
         </li>
@@ -72,29 +54,20 @@
     <div class="container">
     <div class="row">
      
-
-      
-
-
             <main role="main" class="pb-3">
                 <div class="row">
-                 
+           
                     @if (ViewBag.Sidebar == "Yes")
                     {
 
-                         <div class="col-sm-12 col-md-3 list-group">
-                    <div class="card">
+                 <div class="col-sm-12 col-md-3 list-group">
+                 <br>
+                        @foreach (var item in ViewBag.CategoryVMList)
+                        {
+                            <a class="list-group-item list-group-item-action" href="/shop/category/@item.Slug.ToLower()">@item.Name</a>
 
-                    @foreach (var item in ViewBag.ModelPagesMenuPartial)
-                    {
-
-                    <a class="list-group-item list-group-item-action" href="/shop/category/@item.Slug.ToLower()">@item.Title</a>
-                    }
-
-                    </div>
-                    </div>
-
-
+                        }
+                 </div>
 
                         <div class="col-md-9">
                             @RenderBody()
@@ -116,6 +89,19 @@
                                     <dd class="col-sm-10">
                                         @ViewBag.SidebarModel.Body
                                     </dd>
+
+                                    <div class="col list-group">
+                                        <div class="">
+
+                                            @foreach (var item in ViewBag.ModelPagesMenuPartial)
+                                            {
+
+                                                <a class="list-group-item list-group-item-action" href="/shop/category/@item.Slug.ToLower()">@item.Title</a>
+                                            }
+
+                                        </div>
+                                    </div>
+
                                 </dl>
                             </div>
                         </div>
@@ -128,14 +114,6 @@
                     }
                 </div>
             </main>
-
-
-
-            
-
-
-
-
 
     </div>
 

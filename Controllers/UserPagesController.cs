@@ -4,6 +4,7 @@ using OrganicShop2.Interfaces;
 using OrganicShop2.Models.Data;
 using OrganicShop2.Models.ViewModels.Pages;
 using OrganicShop2.Data;
+using OrganicShop2.Models.ViewModels.Shop;
 
 namespace OrganicShop2.Controllers
 {
@@ -64,10 +65,15 @@ namespace OrganicShop2.Controllers
             pageVMList = _context.Pages.ToArray().OrderBy(x => x.Sorting).Where(x => x.Slug != "002")
                          .Select(x => new PageVM(x)).ToList();
             ViewBag.ModelPagesMenuPartial = pageVMList;
-            ///
+			///
+			List<CategoryVM> categoryVMList;
 
+            categoryVMList = _context.Categories.ToArray().OrderBy(x => x.Sorting).Select(x => new CategoryVM(x)).ToList() ;
 
-            return View(model);
+            ViewBag.CategoryVMList = categoryVMList;
+			///
+
+			return View(model);
         }
 
         
