@@ -38,12 +38,13 @@
                     @Html.DisplayFor(modelItem => item.Price) €
             </td>
             <td>
-              <a href="/usershop/product-details/@item.Slug">
-                 <img src="/" >
+                    <a href="/usershop/productdetails?slug=@item.Slug.ToLower()">
+                        <img src="@item.Image" width="180">
               </a>
             </td>
             <td>
-                <a href="/usershop/product=detils/@item.Slug" class="btn btn-info">Details</a>
+                @*<a href="/usershop/productdetails/@item.Slug" class="btn btn-info">Details</a>*@
+                    <a href="/usershop/productdetails?slug=@item.Slug.ToLower()" class="btn btn-info">Details</a>
             </td>
         </tr>
 }

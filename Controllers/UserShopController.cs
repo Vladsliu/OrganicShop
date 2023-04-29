@@ -18,14 +18,14 @@ namespace OrganicShop2.Controllers
             return RedirectToAction("Index", "UserPages");
         }
 
-        public IActionResult CategoryMenyPartial()
-        {
-            List<CategoryVM> categoryVMList;
+        //public IActionResult CategoryMenyPartial()
+        //{
+        //    List<CategoryVM> categoryVMList;
 
-            categoryVMList = _context.Categories.ToArray().OrderBy(x => x.Sorting).Select(x => new CategoryVM()).ToList();
+        //    categoryVMList = _context.Categories.ToArray().OrderBy(x => x.Sorting).Select(x => new CategoryVM()).ToList();
             
-            return PartialView("CategoryMenuPartial", categoryVMList);
-        }
+        //    return PartialView("CategoryMenuPartial", categoryVMList);
+        //}
 
         public IActionResult Category()
         {
@@ -50,6 +50,24 @@ namespace OrganicShop2.Controllers
                 ViewBag.CategoryName = categoryDTO.Name;
             }
             return View(productVMList);
+        }
+
+       public IActionResult ProductDetails(string name)
+        {
+            ProductDTO dto;
+            ProductVM model;
+            string slug = Request.Query["slug"].ToString();
+
+            if (!_context.Products.Any(x => x.Slug.Equals(slug)))
+                {
+                return RedirectToAction("Index", "UserShop");
+                }
+
+            dto = _context.Products.Where(x => x.Slug == slug).FirstOrDefault();
+
+            model = new ProductVM(dto);
+
+            return View("ProductDetails", model);
         }
     }
 }
