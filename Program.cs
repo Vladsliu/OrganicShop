@@ -8,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+});
 builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddDbContext<Db>(options =>
@@ -16,6 +20,8 @@ builder.Services.AddDbContext<Db>(options =>
 });
 
 var app = builder.Build();
+
+app.UseSession();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -40,7 +46,11 @@ app.UseEndpoints(endpoints =>
      name: "default",
      pattern: "{controller=UserPages}/{action=Index}/{id?}");
 
-   
+	//endpoints.MapControllerRoute(
+	//	 name: "Cart",
+	//	 pattern: "Cart/{action}/{id?}",
+	//	 defaults: new { controller = "Cart", action = "Index" }
+	// );
 
 });
 

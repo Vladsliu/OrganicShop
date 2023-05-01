@@ -43,7 +43,7 @@
     </div>
         <ul class="navbar-nav text-capitalize">
             <li>
-                <a href="/" class="navbar-brand" target="_blank">ShoppingCart</a>
+                @Html.Partial("~/Views/Cart/_CartPartial.cshtml", new OrganicShop2.Models.ViewModels.Cart.CartVM())
             </li>
         </ul>
   </div>
