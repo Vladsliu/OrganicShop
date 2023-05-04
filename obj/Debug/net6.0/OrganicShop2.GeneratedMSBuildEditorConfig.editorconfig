@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Чук\source\repos\OrganicShop2
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Чук/source/repos/OrganicShop2/Views/Cart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Чук/source/repos/OrganicShop2/Views/Cart/_CartPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxfQ2FydFBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
