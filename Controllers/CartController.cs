@@ -22,9 +22,18 @@ namespace OrganicShop2.Controllers
 		public IActionResult Index()
 		{
 			var json = HttpContext.Session.GetString("cart");
-			var cart = JsonConvert.DeserializeObject<List<CartVM>>(json) ?? new List<CartVM>();
+            //var cart = JsonConvert.DeserializeObject<List<CartVM>>(json) ?? new List<CartVM>();
 
-			if (cart.Count == 0)//????
+
+            var cart = new List<CartVM>();
+            if (!string.IsNullOrEmpty(json))
+            {
+                cart = JsonConvert.DeserializeObject<List<CartVM>>(json);
+            }
+
+
+
+            if (cart.Count == 0)//????
 			{
 				ViewBag.Message = "Your cart is empty.";
 				return View();

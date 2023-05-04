@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using OrganicShop2.Data;
 using OrganicShop2.Helpers;
 using OrganicShop2.Interfaces;
@@ -18,6 +19,8 @@ builder.Services.AddDbContext<Db>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();///???
 
 
 
