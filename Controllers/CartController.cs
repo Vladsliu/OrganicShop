@@ -1,5 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using OrganicShop2.Models.ViewModels.Cart;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using OrganicShop2.Models.ViewModels.Cart;
+using System.Collections.Generic;
 
 namespace OrganicShop2.Controllers
 {
@@ -12,10 +19,36 @@ namespace OrganicShop2.Controllers
 			_session = httpContextAccessor.HttpContext.Session;
 		}
 
-		//del?
 		public IActionResult Index()
 		{
-			return View();
+			var json = HttpContext.Session.GetString("cart");
+            //var cart = JsonConvert.DeserializeObject<List<CartVM>>(json) ?? new List<CartVM>();
+
+
+            var cart = new List<CartVM>();
+            if (!string.IsNullOrEmpty(json))
+            {
+                cart = JsonConvert.DeserializeObject<List<CartVM>>(json);
+            }
+
+
+
+            if (cart.Count == 0)//????
+			{
+				ViewBag.Message = "Your cart is empty.";
+				return View();
+			}
+
+			decimal total = 0m;
+
+			foreach (var item in cart)
+			{
+				total += item.Total;
+			}
+
+			ViewBag.GrandTotal = total;
+
+			return View(cart);
 		}
 
 		public IActionResult CartPartial() 

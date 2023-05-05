@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using OrganicShop2.Data;
 using OrganicShop2.Helpers;
 using OrganicShop2.Interfaces;
@@ -18,6 +19,10 @@ builder.Services.AddDbContext<Db>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();///???
+
+
 
 var app = builder.Build();
 
@@ -40,17 +45,18 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
- 
+
 
     endpoints.MapControllerRoute(
      name: "default",
      pattern: "{controller=UserPages}/{action=Index}/{id?}");
 
-	//endpoints.MapControllerRoute(
-	//	 name: "Cart",
-	//	 pattern: "Cart/{action}/{id?}",
-	//	 defaults: new { controller = "Cart", action = "Index" }
-	// );
+
+    //endpoints.MapControllerRoute(
+    //	 name: "Cart",
+    //	 pattern: "Cart/{action}/{id?}",
+    //	 defaults: new { controller = "Cart", action = "Index" }
+    // );
 
 });
 
