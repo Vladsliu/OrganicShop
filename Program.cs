@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using OrganicShop2.Data;
@@ -9,9 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
 });
 builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
@@ -20,7 +22,11 @@ builder.Services.AddDbContext<Db>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();///???
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
+
 
 
 
@@ -51,12 +57,6 @@ app.UseEndpoints(endpoints =>
      name: "default",
      pattern: "{controller=UserPages}/{action=Index}/{id?}");
 
-
-    //endpoints.MapControllerRoute(
-    //	 name: "Cart",
-    //	 pattern: "Cart/{action}/{id?}",
-    //	 defaults: new { controller = "Cart", action = "Index" }
-    // );
 
 });
 
