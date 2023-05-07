@@ -1,37 +1,33 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using OrganicShop2.Models.ViewModels.Cart;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using OrganicShop2.Models.ViewModels.Cart;
-using System.Collections.Generic;
+using OrganicShop2.Data;
+using OrganicShop2.Models.Data;
+
 
 namespace OrganicShop2.Controllers
 {
 	public class CartController : Controller
 	{
-		private readonly ISession _session;
+		private readonly IHttpContextAccessor _session;
+        private readonly Db _context;
 
-		public CartController(IHttpContextAccessor httpContextAccessor)
+        public CartController(IHttpContextAccessor httpContextAccessor, Db context)
 		{
-			_session = httpContextAccessor.HttpContext.Session;
-		}
+			_session = httpContextAccessor;
+            _context = context;
+        }
 
 		public IActionResult Index()
 		{
 			var json = HttpContext.Session.GetString("cart");
-            //var cart = JsonConvert.DeserializeObject<List<CartVM>>(json) ?? new List<CartVM>();
-
+           
 
             var cart = new List<CartVM>();
             if (!string.IsNullOrEmpty(json))
             {
                 cart = JsonConvert.DeserializeObject<List<CartVM>>(json);
             }
-
-
 
             if (cart.Count == 0)//????
 			{
@@ -68,13 +64,67 @@ namespace OrganicShop2.Controllers
 					qty += item.Quantity;
 					price += item.Quantity * item.Price;
 				}
-			}
+
+                model.Quantity = qty;
+                model.Price = price;
+
+            }
 			else 
 			{
 				model.Quantity = 0;
 				model.Price = 0m;
 			}
 		return PartialView("_CartPartial", model);
+		}
+
+		public IActionResult AddToCartPartial(int id)
+		{
+			var json = HttpContext.Session.GetString("cart");
+
+
+			var cart = new List<CartVM>();
+			if (!string.IsNullOrEmpty(json))
+			{
+				cart = JsonConvert.DeserializeObject<List<CartVM>>(json);
+			}
+
+			CartVM model = new CartVM();
+
+			ProductDTO product = _context.Products.Find(id);
+
+			var productInCart = cart.FirstOrDefault(x => x.ProductId == id);
+
+			if (productInCart == null) 
+			{
+				cart.Add(new CartVM()
+				{
+					ProductId = product.Id,
+					ProductName = product.Name,
+					Quantity = 1,
+					Price = decimal.Parse(product.Price),
+					Image = product.Image
+				});
+			}
+			else
+			{
+				productInCart.Quantity++; 
+			}
+
+			int qty = 0;
+			decimal price = 0m;
+
+			foreach (var item in cart)
+			{ 
+				qty += item.Quantity;
+				price += item.Quantity * item.Price;
+			}
+
+			model.Quantity = qty;
+			model.Price = price;
+
+			HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cart));
+
+			return PartialView("_AddToCartPartial", model);
 		}
 	}
 }
