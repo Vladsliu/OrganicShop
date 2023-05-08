@@ -44,16 +44,16 @@ namespace OrganicShop2.Controllers
 
 			ViewBag.GrandTotal = total;
 
-			return View(cart);
+            return View(cart);
 		}
 
-		public IActionResult CartPartial() 
+		public IActionResult CartPartial()
 		{
 			CartVM model = new CartVM();
 
 			int qty = 0;
 
-			decimal price =  0m;
+			decimal price = 0m;
 
 			if (HttpContext.Session.TryGetValue("cart", out byte[] cartData) && cartData != null)
 			{
@@ -63,20 +63,20 @@ namespace OrganicShop2.Controllers
 				{
 					qty += item.Quantity;
 					price += item.Quantity * item.Price;
+
 				}
 
-                model.Quantity = qty;
-                model.Price = price;
-
+				model.Quantity = qty;
+				model.Price = price;
             }
-			else 
+			else
 			{
 				model.Quantity = 0;
 				model.Price = 0m;
 			}
-		return PartialView("_CartPartial", model);
-		}
 
+            return PartialView("_CartPartial", model);
+		}
 		public IActionResult AddToCartPartial(int id)
 		{
 			var json = HttpContext.Session.GetString("cart");
@@ -94,7 +94,7 @@ namespace OrganicShop2.Controllers
 
 			var productInCart = cart.FirstOrDefault(x => x.ProductId == id);
 
-			if (productInCart == null) 
+			if (productInCart == null)
 			{
 				cart.Add(new CartVM()
 				{
@@ -107,16 +107,16 @@ namespace OrganicShop2.Controllers
 			}
 			else
 			{
-				productInCart.Quantity++; 
+				productInCart.Quantity++;
 			}
 
 			int qty = 0;
 			decimal price = 0m;
 
 			foreach (var item in cart)
-			{ 
+			{
 				qty += item.Quantity;
-				price += item.Quantity * item.Price;
+				price += item.Quantity * item.Price ;
 			}
 
 			model.Quantity = qty;
@@ -125,6 +125,28 @@ namespace OrganicShop2.Controllers
 			HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cart));
 
 			return PartialView("_AddToCartPartial", model);
+		}
+
+		public JsonResult IncrementProduct(int productId)
+		{
+			var json = HttpContext.Session.GetString("cart");
+
+			var cart = new List<CartVM>();
+			if (!string.IsNullOrEmpty(json))
+			{
+				cart = JsonConvert.DeserializeObject<List<CartVM>>(json);
+			}
+
+			CartVM model = cart.FirstOrDefault(x => x.ProductId == productId);
+
+			model.Quantity++;
+
+			var result = new { qty = model.Quantity, price = model.Price };
+
+            // Обновляем состояние корзины в сессии
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cart));
+
+            return new JsonResult(result);
 		}
 	}
 }

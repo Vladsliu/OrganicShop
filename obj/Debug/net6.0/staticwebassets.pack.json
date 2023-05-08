@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\lib\\Content\\PagedList.css"
     },
     {
+      "Id": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\Content\\ShopJS\\IncrementProductScript.js",
+      "PackagePath": "staticwebassets\\lib\\Content\\ShopJS\\IncrementProductScript.js"
+    },
+    {
       "Id": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\Content\\ShopJS\\ProductsScript.js",
       "PackagePath": "staticwebassets\\lib\\Content\\ShopJS\\ProductsScript.js"
     },
