@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/Y3NAfS7lO673505KOo9OoPH5GdQp2eB/BDt4xLOhKQ=",
+  "Hash": "66XOH0usYLLfG2zZkVmYdiY1XG0PLzJjMZQHXO0Avx4=",
   "Source": "OrganicShop2",
   "BasePath": "_content/OrganicShop2",
   "Mode": "Default",
@@ -916,6 +916,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\Content\\PagedList.css"
+    },
+    {
+      "Identity": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\Content\\ShopJS\\IncrementProductScript.js",
+      "SourceId": "OrganicShop2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\",
+      "BasePath": "_content/OrganicShop2",
+      "RelativePath": "lib/Content/ShopJS/IncrementProductScript.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\Content\\ShopJS\\IncrementProductScript.js"
     },
     {
       "Identity": "C:\\Users\\Чук\\source\\repos\\OrganicShop2\\wwwroot\\lib\\Content\\ShopJS\\ProductsScript.js",

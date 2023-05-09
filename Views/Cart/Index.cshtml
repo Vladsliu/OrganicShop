@@ -44,11 +44,11 @@ else
             <td>
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
-            <td>
+            <td class="qty@(item.ProductId)">
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                        @Html.DisplayFor(modelItem => item.Price)€
             </td>
             <td>
                         <img src="@item.Image" width="120">
@@ -58,11 +58,13 @@ else
                 <a href="#" class="decproduct" data-id="@item.ProductId">-</a>
                 <a href="#" class="removeproduct" data-id="@item.ProductId">Remove</a>
             </td>
-            <td>
-                 @Html.DisplayFor(modelItem => item.Total) €
+            <td class="total@(item.ProductId)">
+                 @Html.DisplayFor(modelItem => item.Total)€
             </td>
         </tr>
 }
+
+
 
 <tr>
     <td></td>
@@ -71,10 +73,44 @@ else
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>@ViewBag.GrandTotal €</td>
+                <td class="grandtotal"><b>Grand total: </b><span>@ViewBag.GrandTotal€</span></td>
       
 </tr>
 
     </tbody>
 </table>
 }
+
+ @section Scripts
+ {
+    <script>
+        $(function () {
+
+            $("a.incproduct").click(function (e) {
+                e.preventDefault();
+
+                var productId = $(this).data("id");
+                var url = "/cart/IncrementProduct";
+
+                $.getJSON(url, { productId: productId }, function (data) {
+
+                    $("td.qty" + productId).html(data.qty);
+
+                    var price = data.qty * data.price;
+                    var priceHtml = price.toFixed(2) + "€";
+
+                    $("td.total" + productId).html(priceHtml);
+
+                    var gt = parseFloat($("td.grandtotal span").text())
+                    var grandtotal = (gt + data.price).toFixed(2);
+
+                    $("td.grandtotal span").text(grandtotal);
+
+                });
+            });
+        });
+
+        
+    </script>
+ 
+ }
