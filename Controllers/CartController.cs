@@ -29,7 +29,7 @@ namespace OrganicShop2.Controllers
                 cart = JsonConvert.DeserializeObject<List<CartVM>>(json);
             }
 
-            if (cart.Count == 0)//????
+            if (cart.Count == 0 || cart == null)//????
 			{
 				ViewBag.Message = "Your cart is empty.";
 				return View();
@@ -143,10 +143,55 @@ namespace OrganicShop2.Controllers
 
 			var result = new { qty = model.Quantity, price = model.Price };
 
-            // Обновляем состояние корзины в сессии
             HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cart));
 
             return new JsonResult(result);
 		}
-	}
+
+		public IActionResult DecrementProduct(int productId) 
+		{
+            var json = HttpContext.Session.GetString("cart");
+
+            var cart = new List<CartVM>();
+            if (!string.IsNullOrEmpty(json))
+            {
+                cart = JsonConvert.DeserializeObject<List<CartVM>>(json);
+            }
+
+            CartVM model = cart.FirstOrDefault(x => x.ProductId == productId);
+
+			if (model.Quantity > 1)
+			{
+				model.Quantity--;
+			}
+			else
+			{
+				model.Quantity = 0;
+				cart.Remove(model);
+			}
+
+            var result = new { qty = model.Quantity, price = model.Price };
+
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cart));
+
+            return new JsonResult(result);
+        }
+
+		public void RemoveProduct(int productId) 
+		{
+            var json = HttpContext.Session.GetString("cart");
+
+            var cart = new List<CartVM>();
+            if (!string.IsNullOrEmpty(json))
+            {
+                cart = JsonConvert.DeserializeObject<List<CartVM>>(json);
+            }
+
+			CartVM model = cart.FirstOrDefault(x => x.ProductId == productId);
+
+			cart.Remove(model);
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cart));
+        }
+
+    }
 }
