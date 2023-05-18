@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Routing.Patterns;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using OrganicShop2.Data;
@@ -29,6 +31,24 @@ builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
 
 
+//
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+.AddCookie(options =>
+{
+    options.LoginPath = new PathString("/Account/Login");
+    options.AccessDeniedPath = new PathString("/Account/AccessDenied");
+});
+
+//
+
+
+
+
 
 var app = builder.Build();
 
@@ -47,6 +67,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();//added for GPT
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
@@ -56,6 +77,16 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllerRoute(
      name: "default",
      pattern: "{controller=UserPages}/{action=Index}/{id?}");
+
+
+
+    //endpoints.MapControllerRoute(
+    //    name: "Account",
+    //    pattern: "Account/{action}/{id?}",
+    //    defaults: new { controller = "Account", action = "Index" }
+    //    );
+
+
 
 
 });
