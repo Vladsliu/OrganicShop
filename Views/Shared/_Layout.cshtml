@@ -39,6 +39,27 @@
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li>
+       @* ............*@
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                        <li>
+                            @Html.ActionLink("Logout", "Logout", "Account", null, new {@class="navbar-text", style = "text-decoration: none"})
+                        </li>    
+                        }
+                        else
+                        {
+                                if (ViewBag.Title == "Login")
+                            {
+                                <li class="navbar-text"> @Html.ActionLink("Login", "Login", "Account", null, new {@class="active", style = "text-decoration: none"}) </li>
+                            }
+                            else
+                            {
+                                <li>  @Html.ActionLink("Login", "Login", "Account", null, new {@class="navbar-text", style = "text-decoration: none"})</li>
+                            }
+                        }
+                       @* ......*@
+                   @*    плавает кнопка логин вход*@
+
       </ul>
     </div>
         <ul class="navbar-nav text-capitalize">

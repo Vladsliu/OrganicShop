@@ -109,21 +109,18 @@ namespace OrganicShop2.Controllers
             }
             else
             {
-                //FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-                //return Redirect(FormsAuthentication.GetRedirectUrl(model.Username, model.RememberMe);
-
 
                 var claims = new List<Claim>
                 {
                  new Claim(ClaimTypes.Name, model.Username)
-            // Дополнительные утверждения, если необходимо
+          
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var authProperties = new AuthenticationProperties
                 {
                     IsPersistent = model.RememberMe
-                    // Дополнительные свойства аутентификации, если необходимо
+                 
                 };
 
                  HttpContext.SignInAsync(
@@ -141,6 +138,23 @@ namespace OrganicShop2.Controllers
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             return RedirectToAction("Login");
+        }
+
+        public IActionResult UserNavPartial()
+        {
+            var userName = User.Identity.Name;
+
+            UserNavPartialVM model;
+
+            UserDTO dto = _context.Users.FirstOrDefault(u => u.FirstName == userName);
+
+            model = new UserNavPartialVM()
+            { 
+            FirstName = dto.FirstName,
+            LastName = dto.LastName
+            };
+           
+            return PartialView(model);
         }
     }
 }
