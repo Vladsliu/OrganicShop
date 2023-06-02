@@ -1,0 +1,5 @@
+﻿@model OrganicShop2.Models.ViewModels.Cart.CartVM
+
+Cart: @Model.Quantity item(s)  - @Model.Price €
+<br />
+@Html.ActionLink("Checkout", "Index", "Cart")

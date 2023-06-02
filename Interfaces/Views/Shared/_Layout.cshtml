@@ -1,0 +1,157 @@
+﻿
+@using OrganicShop2.Models.ViewModels.Pages
+@using OrganicShop2.Controllers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Organic Shop - best for you</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OrganicShop2.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+                @Html.ActionLink("OrganicShop", "Index", "UserPages","", new{@class = "nawbar-brand"})
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" 
+    aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+
+      
+        <li class="nav-item">
+          @Html.ActionLink("Pages", "Index", "Pages", "", new {@class = "nav-link"})
+        </li>
+        <li class="nav-item">
+         @Html.ActionLink("Sidebar", "Sidebar", "Pages", "", new {@class = "nav-link"})
+        </li>
+        <li class="nav-item">
+        @Html.ActionLink("Categories", "Categories", "Shop", "", new {@class = "nav-link"})
+        </li>
+        <li class="nav-item">
+        @Html.ActionLink("Products", "Products", "Shop", "", new {@class = "nav-link"})
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+                              
+            
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                        <li>
+                                @Html.ActionLink("Logout", "Logout", "Account", null, new {@class="nav-link", style = "text-decoration: none"})
+                            </li>    
+                            <li>
+                                @Html.ActionLink("Dashboard", "UserProfile", "Account", "", new {@class="nav-link", style = "text-decoration: none"})
+
+                            </li>
+                        }
+                        else
+                        {
+                                if (ViewBag.Title == "Login")
+                            {
+                                <li class="navbar-text"> @Html.ActionLink("Login", "Login", "Account", null, new {@class="active", style = "text-decoration: none"}) </li>
+                            }
+                            else
+                            {
+                                <li>  @Html.ActionLink("Login", "Login", "Account", null, new {@class="nav-link", style = "text-decoration: none"})</li>
+                            }
+                        }
+                   
+      </ul>
+    </div>
+        <ul class="navbar-nav text-capitalize">
+            <li>
+                @Html.Partial("~/Views/Cart/_CartPartial.cshtml", new OrganicShop2.Models.ViewModels.Cart.CartVM())
+            </li>
+        </ul>
+  </div>
+</nav>
+
+    </header>
+
+    <div class="container">
+    <div class="row">
+     
+            <main role="main" class="pb-3">
+                <div class="row">
+           
+                    @if (ViewBag.Sidebar == "Yes")
+                    {
+
+                 <div class="col-sm-12 col-md-3 list-group">
+                 <br>
+                        @foreach (var item in ViewBag.CategoryVMList)
+                        {
+
+                                <a class="list-group-item list-group-item-action" href="/usershop/category?name=@item.Name.ToLower()">@item.Name</a>
+
+                        }
+                 </div>
+
+                        <div class="col-md-9">
+                            @RenderBody()
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                           
+                                <hr />
+                                <dl class="row">
+                                    <dt class="col-sm-2">
+                                        <a>ID</a>
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @ViewBag.SidebarModel.Id
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        <a>Body</a>
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @ViewBag.SidebarModel.Body
+                                    </dd>
+
+                                    <div class="col list-group">
+                                        <div class="">
+
+                                            @foreach (var item in ViewBag.ModelPagesMenuPartial)
+                                            {
+                                                <a class="list-group-item list-group-item-action" href="/usershop/category/@item.Slug.ToLower()">@item.Title</a>
+                                            }
+
+                                        </div>
+                                    </div>
+
+                                </dl>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-12">
+                            @RenderBody()
+                        </div>
+                    }
+                </div>
+            </main>
+
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - OrganicShop2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<OrganicShop2.Models.ViewModels.Pages.SidebarVM>
+
+@{
+    ViewData["Title"] = "Sidebar";
+}
+
+@if (TempData["SM"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SM"]
+    </div>
+}
+
+<h1>Sidebar</h1>
+
+<p>
+    <a asp-action="CreateSidebar" class="btn btn-success">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "EditSidebar", new {  id=item.Id  }, new {@class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "DeleteSidebar", new {  id=item.Id  }, new {@class = "delete btn btn-danger" })
+            </td>
+        </tr>
+}
+
+    </tbody>
+</table>
+
+@section Scripts
+    {
+    <script src="~/lib/content/shopjs/productsscript.js"></script>
+}
