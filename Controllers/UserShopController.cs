@@ -18,14 +18,6 @@ namespace OrganicShop2.Controllers
             return RedirectToAction("Index", "UserPages");
         }
 
-        //public IActionResult CategoryMenyPartial()
-        //{
-        //    List<CategoryVM> categoryVMList;
-
-        //    categoryVMList = _context.Categories.ToArray().OrderBy(x => x.Sorting).Select(x => new CategoryVM()).ToList();
-            
-        //    return PartialView("CategoryMenuPartial", categoryVMList);
-        //}
 
         public IActionResult Category()
         {

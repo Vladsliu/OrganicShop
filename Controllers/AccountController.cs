@@ -23,7 +23,6 @@ namespace OrganicShop2.Controllers
             return RedirectToAction("Login");
         }
 
-        //[ActionName("create-account")]
         [HttpGet]
         public ActionResult CreateAccount()
         
@@ -32,7 +31,6 @@ namespace OrganicShop2.Controllers
             return View("CreateAccount");
         }
 
-        //[ActionName("create-account")]
         [HttpPost]
         public IActionResult CreateAccount(UserVM model)
         {
@@ -85,7 +83,7 @@ namespace OrganicShop2.Controllers
             string userName = User.Identity.Name;
             if (!string.IsNullOrEmpty(userName))
             {
-                return RedirectToAction("user-profile");  
+                return RedirectToAction("UserProfile");  
             }
 
             return View();
@@ -140,21 +138,81 @@ namespace OrganicShop2.Controllers
             return RedirectToAction("Login");
         }
 
-        public IActionResult UserNavPartial()
+        [HttpGet]
+        public IActionResult UserProfile()
         {
             var userName = User.Identity.Name;
 
-            UserNavPartialVM model;
+            UserProfileVM model;
 
-            UserDTO dto = _context.Users.FirstOrDefault(u => u.FirstName == userName);
+            UserDTO dto = _context.Users.FirstOrDefault(x => x.Username == userName);
 
-            model = new UserNavPartialVM()
-            { 
-            FirstName = dto.FirstName,
-            LastName = dto.LastName
-            };
-           
-            return PartialView(model);
+            model = new UserProfileVM(dto);
+
+            return View("UserProfile", model);
+        }
+
+        [HttpPost]
+        public IActionResult UserProfile(UserProfileVM model)
+        {
+            bool userNameIsChanged = false;
+
+            if (!ModelState.IsValid)
+            {
+                return View("Userprofile", model);
+            }
+
+            if (!string.IsNullOrWhiteSpace(model.Password))
+            {
+                if (!model.Password.Equals(model.ConfirmPassword))
+                {
+                    ModelState.AddModelError("", "Password do not match.");
+                    return View("UserProfile", model);
+                }
+            }
+
+            string userName = User.Identity.Name;
+
+            if (userName != model.Username)
+            {
+                userName = model.Username;
+                userNameIsChanged = true;
+            }
+
+            if (_context.Users.Where(x => x.Id != model.Id).Any(x => x.Username == userName)) 
+            {
+                ModelState.AddModelError("", $"UserName {model.Username} already exists");
+                model.Username = "";
+                return View("UserProfile", model);
+            }
+
+            UserDTO dto = _context.Users.Find(model.Id);
+
+            dto.FirstName = model.FirstName;
+            dto.LastName = model.LastName;
+            dto.EmailAddress = model.EmailAddress;
+            dto.Username = model.Username;
+
+            if (!string.IsNullOrWhiteSpace(model.Password))
+            {
+                dto.Password = model.Password;
+            }
+
+            _context.SaveChanges();
+
+            TempData["SM"] = "You have edited your profile";
+
+
+            if (!userNameIsChanged)
+                return View("UserProfile", model);
+
+            else
+                return RedirectToAction("Logout");
         }
     }
 }
+
+
+
+
+

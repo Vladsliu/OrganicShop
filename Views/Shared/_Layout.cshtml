@@ -24,7 +24,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
+
+                        @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            
+                        
+                        <li class="nav-item">
           @Html.ActionLink("Pages", "Index", "Pages", "", new {@class = "nav-link"})
         </li>
         <li class="nav-item">
@@ -39,12 +44,17 @@
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li>
-       @* ............*@
+                        }
+
                         @if (User.Identity.IsAuthenticated)
                         {
                         <li>
-                            @Html.ActionLink("Logout", "Logout", "Account", null, new {@class="navbar-text", style = "text-decoration: none"})
-                        </li>    
+                                @Html.ActionLink("Logout", "Logout", "Account", null, new {@class="nav-link", style = "text-decoration: none"})
+                            </li>    
+                            <li>
+                                @Html.ActionLink("Dashboard", "UserProfile", "Account", "", new {@class="nav-link", style = "text-decoration: none"})
+
+                            </li>
                         }
                         else
                         {
@@ -54,20 +64,31 @@
                             }
                             else
                             {
-                                <li>  @Html.ActionLink("Login", "Login", "Account", null, new {@class="navbar-text", style = "text-decoration: none"})</li>
+                                <li>  @Html.ActionLink("Login", "Login", "Account", null, new {@class="nav-link", style = "text-decoration: none"})</li>
                             }
                         }
-                       @* ......*@
-                   @*    плавает кнопка логин вход*@
-
+                   
       </ul>
     </div>
-        <ul class="navbar-nav text-capitalize">
-            <li>
-                @Html.Partial("~/Views/Cart/_CartPartial.cshtml", new OrganicShop2.Models.ViewModels.Cart.CartVM())
-            </li>
-        </ul>
+      @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                   <a>admin</a>
+
+                }
+                else
+                {
+                    if(ViewBag.Title != "Cart Details")
+                    {
+                        <ul class="navbar-nav text-capitalize">
+                            <li>
+                                @Html.Partial("~/Views/Cart/_CartPartial.cshtml", new OrganicShop2.Models.ViewModels.Cart.CartVM())
+                            </li>
+                        </ul>
+
+                    }
+                }
   </div>
+
 </nav>
 
     </header>
