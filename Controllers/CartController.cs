@@ -29,7 +29,7 @@ namespace OrganicShop2.Controllers
                 cart = JsonConvert.DeserializeObject<List<CartVM>>(json);
             }
 
-            if (cart.Count == 0 || cart == null)//????
+            if (cart.Count == 0 || cart == null)
 			{
 				ViewBag.Message = "Your cart is empty.";
 				return View();

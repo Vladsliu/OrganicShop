@@ -29,7 +29,6 @@ namespace OrganicShop2.Controllers
             if (!_context.Pages.Any(x => x.Slug.Equals(page)))
             {
                 return NotFound();
-                //return RedirectToAction("Index", new { page = "" });
             }
 
             dto = _context.Pages.Where(x => x.Slug == page).FirstOrDefault();
@@ -76,7 +75,6 @@ namespace OrganicShop2.Controllers
 			return View(model);
         }
 
-        
         public IActionResult PagesMenuPartial()
         {
             List<PageVM> pageVMList;
@@ -93,9 +91,7 @@ namespace OrganicShop2.Controllers
 
             SidebarDTO dto = _context.Sidebars.Find(1002);
 
-           
             model = new SidebarVM { Id = dto.id, Body = dto.Body };
-
 
             return PartialView("_SidebarPartial", model);
         }

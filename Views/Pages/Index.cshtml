@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<OrganicShop2.Models.ViewModels.Pages.PageVM>
-@*@model OrganicShop2.Models.ViewModels.Pages.PageVM*@
 
 @{
     ViewData["Title"] = "Pages";
@@ -62,8 +61,6 @@
 {
 <script>
     $(function (){
-
-        /*Confirm page deletion*/
 
         $("a.delete").click(function (){
             if (!confirm("Confirm page deletion")) return false;
