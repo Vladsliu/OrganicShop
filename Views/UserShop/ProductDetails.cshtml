@@ -18,7 +18,10 @@
     
 
     <br/>
-    <div class="addtocart">
+
+    @if(User.Identity.IsAuthenticated)
+        {
+        <div class="addtocart">
         <a href="#" class="addtocart btn btn-success">Add to cart</a>
         <span class="loader">
 			<img src="/lib/ajax-loader.gif" height="100" width="150"/>
@@ -26,7 +29,12 @@
         <div class="ajaxmsg">
             The product has been added to your cart.
         </div>
-		</div>
+            </div>
+        }
+        else
+        {
+          <div>Please login</div> 
+        }
     </div>
 
 
