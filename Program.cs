@@ -19,6 +19,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
+    options.Cookie.Name = "cart"; 
+    options.Cookie.HttpOnly = true;
     options.IdleTimeout = TimeSpan.FromMinutes(20);
 });
 builder.Services.AddScoped<IPhotoService, PhotoService>();

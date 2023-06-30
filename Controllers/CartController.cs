@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using OrganicShop2.Models.ViewModels.Cart;
 using OrganicShop2.Data;
 using OrganicShop2.Models.Data;
-
+using Microsoft.AspNetCore.Http;
 
 namespace OrganicShop2.Controllers
 {
@@ -192,6 +192,19 @@ namespace OrganicShop2.Controllers
 			cart.Remove(model);
             HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cart));
         }
+
+		public IActionResult PaypalPartial()
+		{
+            //List<CartVM> cart = Session["cart"] as List<CartVM>;
+
+            var cartJson = HttpContext.Session.GetString("cart");
+            List<CartVM> cart = JsonConvert.DeserializeObject<List<CartVM>>(cartJson);
+
+
+
+
+            return PartialView(cart);
+		}
 
     }
 }
