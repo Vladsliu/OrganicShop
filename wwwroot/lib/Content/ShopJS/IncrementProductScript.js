@@ -185,6 +185,11 @@ $(function () {
         $("a.placeorder").click(function (e) {
             e.preventDefault();
 
+
+            console.log("Checkout button clicked!");
+
+
+
             var $this = $(this);
             var url = "/cart/PlaceOrder";
 

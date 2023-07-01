@@ -4,6 +4,8 @@ using OrganicShop2.Models.ViewModels.Cart;
 using OrganicShop2.Data;
 using OrganicShop2.Models.Data;
 using Microsoft.AspNetCore.Http;
+using System.Net.Mail;
+using System.Net;
 
 namespace OrganicShop2.Controllers
 {
@@ -201,9 +203,53 @@ namespace OrganicShop2.Controllers
             List<CartVM> cart = JsonConvert.DeserializeObject<List<CartVM>>(cartJson);
 
 
-
-
             return PartialView(cart);
+		}
+
+		[HttpPost]
+		public void PlaceOrder()
+		{
+            var cartJson = HttpContext.Session.GetString("cart");
+            List<CartVM> cart = JsonConvert.DeserializeObject<List<CartVM>>(cartJson);
+
+			string userName = User.Identity.Name;
+
+			int orderId = 0;
+
+			OrderDTO orderDTO = new OrderDTO();
+
+			var q = _context.Users.FirstOrDefault(x => x.Username == userName);
+			int userId = q.Id;
+
+			orderDTO.UserId = userId;
+			orderDTO.CreatedAt = DateTime.Now;
+
+			_context.Add(orderDTO);
+			_context.SaveChanges();
+
+			orderId = orderDTO.Id;
+
+			OrderDetailsDTO orderDetailsDTO = new OrderDetailsDTO();
+
+			foreach (var item in cart)
+			{ 
+				orderDetailsDTO.OrderId = orderId;
+				orderDetailsDTO.UserId = userId;
+				orderDetailsDTO.ProductId = item.ProductId;
+				orderDetailsDTO.Quantity = item.Quantity;
+
+				_context.OrderDetails.Add(orderDetailsDTO);
+				_context.SaveChanges();
+			}
+
+            var client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
+            {
+                Credentials = new NetworkCredential("35cec9d75ea6cf", "17a307a80844de"),
+                EnableSsl = true
+            };
+            client.Send("shop@example.com", "admin@example.com", "New Order", $"You have a new order. Order number: {orderId}");
+
+			HttpContext.Session.SetString("cart", null);
 		}
 
     }
