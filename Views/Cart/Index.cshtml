@@ -118,7 +118,36 @@ else
 
  @section Scripts
  {
-    <script src="/lib/content/shopjs/incrementproductscript.js"></script>
+    <script src="~/lib/content/shopjs/incrementproductscript.js"></script>
+
+  <script>
+        $(function () {
+
+        $("a.placeorder").click(function (e) {
+        e.preventDefault();
+
+
+        console.log("Checkout button clicked!");
+
+
+
+        var $this = $(this);
+        var url = "/cart/PlaceOrder";
+
+        $(".ajaxbg").show();
+
+        $.post(url,
+        {},
+        function (data) {
+        $(".ajaxbg span").text("Thank you. You will now be redirected to paypal.");
+        setTimeout(function () {
+        $('form input[name = "submit"]').click();
+        }, 2000);
+        });
+        });
+        });
+  </script>
+
  }
  
 

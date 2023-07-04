@@ -222,12 +222,13 @@ namespace OrganicShop2.Controllers
 			int userId = q.Id;
 
 			orderDTO.UserId = userId;
-			orderDTO.CreatedAt = DateTime.Now;
+			orderDTO.CreateAt = DateTime.Now;
+			
 
 			_context.Add(orderDTO);
 			_context.SaveChanges();
 
-			orderId = orderDTO.Id;
+			orderId = orderDTO.OrderId;
 
 			OrderDetailsDTO orderDetailsDTO = new OrderDetailsDTO();
 
@@ -242,15 +243,16 @@ namespace OrganicShop2.Controllers
 				_context.SaveChanges();
 			}
 
-            var client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
+            var client = new SmtpClient("sandbox.smtp.mailtrap.io", 25)
             {
                 Credentials = new NetworkCredential("35cec9d75ea6cf", "17a307a80844de"),
                 EnableSsl = true
             };
-            client.Send("shop@example.com", "admin@example.com", "New Order", $"You have a new order. Order number: {orderId}");
+			client.Send("shop@example.com", "admin@example.com", "New Order", $"You have a new order. Order number: {orderId}");
 
-			HttpContext.Session.SetString("cart", null);
-		}
+			var a = cart;
 
+            HttpContext.Session.Remove("cart");
+        }
     }
 }
