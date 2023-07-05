@@ -23,7 +23,7 @@ namespace OrganicShop2.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserRoleDTO>().HasKey(ur => new { ur.UserId, ur.RoleId });
+            modelBuilder.Entity<UserRoleDTO>().HasKey(ur => new { ur.UserId, ur.RoleId });/////////////
         }
 
     }

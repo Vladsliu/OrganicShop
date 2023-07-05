@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Routing.Patterns;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using OrganicShop2.Interfaces;
 using OrganicShop2.Models.Data;
 using OrganicShop2.Services;
 using System.Configuration;
+using System.Globalization;
 using System.Security.Principal;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
+    options.Cookie.Name = "cart"; 
+    options.Cookie.HttpOnly = true;
     options.IdleTimeout = TimeSpan.FromMinutes(20);
 });
 builder.Services.AddScoped<IPhotoService, PhotoService>();
@@ -32,6 +36,15 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
+
+
+//
+var cultureInfo = new CultureInfo("en-US");
+cultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+//
 
 
 //

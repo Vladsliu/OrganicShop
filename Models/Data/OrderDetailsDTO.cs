@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OrganicShop2.Models.Data
 {
+    [Table("tblOrderDetails")]
     public class OrderDetailsDTO
     {
         [Key]

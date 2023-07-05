@@ -41,7 +41,7 @@ namespace OrganicShop2.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("OrganicShop2.Models.Data.PagesDTO", b =>
@@ -72,7 +72,7 @@ namespace OrganicShop2.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pages");
+                    b.ToTable("Pages", (string)null);
                 });
 
             modelBuilder.Entity("OrganicShop2.Models.Data.ProductDTO", b =>
@@ -113,7 +113,7 @@ namespace OrganicShop2.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("OrganicShop2.Models.Data.SidebarDTO", b =>
@@ -130,7 +130,7 @@ namespace OrganicShop2.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Sidebars");
+                    b.ToTable("Sidebars", (string)null);
                 });
 
             modelBuilder.Entity("OrganicShop2.Models.Data.ProductDTO", b =>
