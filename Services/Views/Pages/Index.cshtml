@@ -1,0 +1,70 @@
+﻿@model IEnumerable<OrganicShop2.Models.ViewModels.Pages.PageVM>
+
+@{
+    ViewData["Title"] = "Pages";
+}
+
+<h1>Pages</h1>
+
+ 
+@if (TempData["SM"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SM"]
+    </div>
+}
+
+
+
+<p> 
+    <a asp-action="AddPage" class="btn btn-success">Create New Page</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                Title
+            </th>
+            <th>
+                Slug
+            </th>
+                Sidebar
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slug)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasSidebar)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditPage", new {  id=item.Id  }) |
+                @Html.ActionLink("Details", "PageDetails", new {  id=item.Id  }) |
+                @Html.ActionLink("Delete", "DeletePage", new {  id=item.Id }, new { @class = "delete" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+@section Scripts
+{
+<script>
+    $(function (){
+
+        $("a.delete").click(function (){
+            if (!confirm("Confirm page deletion")) return false;
+        });
+    });
+</script>
+}

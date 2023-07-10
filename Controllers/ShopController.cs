@@ -273,5 +273,48 @@ namespace OrganicShop2.Controllers
 
             return RedirectToAction("products");
         }
+
+        public IActionResult Orders()
+        {
+            List<OrdersForAdminVM> ordersForAdmin = new List<OrdersForAdminVM>();
+
+            List<OrderVM> orders = _context.Orders.ToArray().Select(x => new OrderVM(x)).ToList();
+
+            foreach (var order in orders)
+            {
+                Dictionary<string, int> productAndQty = new Dictionary<string, int>();
+
+                decimal total = 0m;
+
+                List<OrderDetailsDTO> orderDetailsList = _context.OrderDetails.Where(x => x.OrderId == order.OrderId).ToList();
+
+                UserDTO user = _context.Users.FirstOrDefault(x => x.Id == order.UserId);
+                string username = user.Username;
+
+                foreach (var orderDetails in orderDetailsList)
+                {
+                    ProductDTO product = _context.Products.FirstOrDefault(x => x.Id == orderDetails.ProductId);
+
+                    decimal price = decimal.Parse(product.Price);
+
+                    string productName = product.Name;
+
+                    productAndQty.Add(productName, orderDetails.Quantity);
+
+                    total += orderDetails.Quantity * price;
+                }
+                ordersForAdmin.Add(new OrdersForAdminVM()
+                {
+                    OrderNumber = order.OrderId,
+                    UserName = username,
+                    Total = total,
+                    ProductsAndQty = productAndQty,
+                    CreatedAt = order.CreatedAt
+                }
+                    );
+            }
+
+            return View(ordersForAdmin);
+        }
     }
 }
