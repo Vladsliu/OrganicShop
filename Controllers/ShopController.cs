@@ -276,7 +276,7 @@ namespace OrganicShop2.Controllers
 
         public IActionResult Orders()
         {
-            List<OrdersForAdminVM> ordersForAdmin = new List<OrdersForAdminVM>();
+            List<OrdersForUserVM> ordersForAdmin = new List<OrdersForUserVM>();
 
             List<OrderVM> orders = _context.Orders.ToArray().Select(x => new OrderVM(x)).ToList();
 
@@ -303,7 +303,7 @@ namespace OrganicShop2.Controllers
 
                     total += orderDetails.Quantity * price;
                 }
-                ordersForAdmin.Add(new OrdersForAdminVM()
+                ordersForAdmin.Add(new OrdersForUserVM()
                 {
                     OrderNumber = order.OrderId,
                     UserName = username,

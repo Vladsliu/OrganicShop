@@ -8,35 +8,26 @@
 
 @if (!Model.Any())
 {
-    <h2 class="text-center">
-        There are no orders
-    </h2>
+<h2 class="text-center">You have no orders.</h2>    
 }
 else
 {
-
 <table class="table">
     <thead>
         <tr>
             <th>
-               @* @Html.DisplayNameFor(model => model.OrderNumber)*@
-               Order Number
+                Order Number
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.UserName)*@
-                Username
+                Order Details
             </th>
             <th>
-               @* @Html.DisplayNameFor(model => model.Total)*@
-               Order Details
-            </th>
-            <th>
-               @* @Html.DisplayNameFor(model => model.CreatedAt)*@
-               Created At
+                Created At
             </th>
             <th>
                 Total
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -46,23 +37,19 @@ else
                 @Html.DisplayFor(modelItem => item.OrderNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @foreach(var item2 in item.ProductsAndQty)
+                @foreach (var item2 in item.ProductsAndQty)
                         {
                             @item2.Key @:x @item2.Value <br/>
                         }
-               </td>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
             <td>
-                        @Html.DisplayFor(modelItem => item.Total)€
+             @Html.DisplayFor(modelItem => item.Total)€
             </td>
         </tr>
 }
     </tbody>
 </table>
-
 }
