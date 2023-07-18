@@ -1,0 +1,52 @@
+﻿@model IEnumerable<OrganicShop2.Models.ViewModels.Shop.ProductVM>
+
+@{
+    ViewData["Title"] = ViewBag.CategoryName;
+}
+
+<h1>@ViewBag.CategoryName</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Price
+            </th>
+     
+            <th>
+                Image
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Price) €
+            </td>
+            <td>
+                    <a href="/usershop/productdetails?slug=@item.Slug.ToLower()">
+                        <img src="@item.Image" width="180">
+              </a>
+            </td>
+            <td>
+                @*<a href="/usershop/productdetails/@item.Slug" class="btn btn-info">Details</a>*@
+                    <a href="/usershop/productdetails?slug=@item.Slug.ToLower()" class="btn btn-info">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
