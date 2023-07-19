@@ -25,9 +25,9 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
 
-                        @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                      @*  @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            
+                            *@
                         
                         <li class="nav-item">
           @Html.ActionLink("Pages", "Index", "Pages", "", new {@class = "nav-link"})
@@ -44,7 +44,7 @@
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li>
-                        }
+                        @*}*@
 
                         @if (User.Identity.IsAuthenticated)
                         {
