@@ -6,6 +6,8 @@ using OrganicShop2.Data;
 using OrganicShop2.Models.Data;
 using OrganicShop2.Models.ViewModels.Account;
 using System.Security.Claims;
+using OrganicShop2.Models.ViewModels.Shop;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OrganicShop2.Controllers
 {
@@ -130,7 +132,6 @@ namespace OrganicShop2.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -208,6 +209,55 @@ namespace OrganicShop2.Controllers
 
             else
                 return RedirectToAction("Logout");
+        }
+
+        [HttpGet]
+        public IActionResult Orders()
+        {
+
+            List<OrdersForUserVM> ordersForUser = new List<OrdersForUserVM>();
+
+            var userName = User.Identity.Name;
+
+            var userId = _context.Users.Where(x => x.Username == User.Identity.Name).Select(x => x.Id).FirstOrDefault();
+
+
+
+
+            
+            List<OrderVM> orders = _context.Orders.Where(x => x.UserId == userId).ToArray().Select(x => new OrderVM(x)).ToList();
+
+            foreach (var order in orders)
+            {
+                Dictionary<string, int> productAndQty = new Dictionary<string, int>();
+
+                decimal total = 0m;
+
+                List<OrderDetailsDTO> orderDetailsList = _context.OrderDetails.Where(x => x.OrderId == order.OrderId).ToList();
+
+                foreach (var orderDetails in orderDetailsList)
+                {
+                    ProductDTO product = _context.Products.FirstOrDefault(x => x.Id == orderDetails.ProductId);
+
+                    decimal price = decimal.Parse(product.Price);
+
+                    string productName = product.Name;
+
+                    productAndQty.Add(productName, orderDetails.Quantity);
+
+                    total += orderDetails.Quantity * price;
+                }
+                ordersForUser.Add(new OrdersForUserVM()
+                {
+                    OrderNumber = order.OrderId,
+                    Total = total,
+                    ProductsAndQty = productAndQty,
+                    CreatedAt = order.CreatedAt
+                }
+                    );
+            }
+
+            return View(ordersForUser);
         }
     }
 }

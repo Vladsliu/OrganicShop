@@ -230,10 +230,11 @@ namespace OrganicShop2.Controllers
 
 			orderId = orderDTO.OrderId;
 
-			OrderDetailsDTO orderDetailsDTO = new OrderDetailsDTO();
 
 			foreach (var item in cart)
 			{ 
+			OrderDetailsDTO orderDetailsDTO = new OrderDetailsDTO();
+
 				orderDetailsDTO.OrderId = orderId;
 				orderDetailsDTO.UserId = userId;
 				orderDetailsDTO.ProductId = item.ProductId;
