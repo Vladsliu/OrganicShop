@@ -7,6 +7,7 @@ using OrganicShop2.Models.Data;
 using OrganicShop2.Models.ViewModels.Account;
 using System.Security.Claims;
 using OrganicShop2.Models.ViewModels.Shop;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OrganicShop2.Controllers
 {
@@ -131,7 +132,6 @@ namespace OrganicShop2.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
